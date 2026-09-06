@@ -1,0 +1,77 @@
+---
+import Container from '../ui/Container.astro';
+---
+
+<section id="sponsors" class="sponsors" aria-labelledby="sponsors-title">
+  <Container as="div">
+    <h2 id="sponsors-title" class="sponsors__title">Sponsors</h2>
+
+    <div class="sponsors__tier">
+      <h3>Corindón</h3>
+      <a href="/sponsors/interledger" class="sponsor-logo">
+        <img src="https://placehold.co/300x80/ffffff/4285f4?text=Interledger" alt="Interledger Logo" width="160" height="40" />
+      </a>
+    </div>
+
+    <div class="sponsors__tier">
+      <h3>Esmeralda</h3>
+      <a href="https://www.cuc.edu.co/" target="_blank" rel="noopener" class="sponsor-logo">
+        <img src="https://placehold.co/280x80/ffffff/4285f4?text=CUC" alt="CUC Logo" width="140" height="40" />
+      </a>
+    </div>
+  </Container>
+</section>
+
+<style>
+	.sponsors {
+		padding-block: var(--space-20);
+		background: var(--color-section-alt);
+	}
+
+	.sponsors__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		text-align: center;
+		margin: 0 0 var(--space-10);
+		color: var(--color-text);
+	}
+
+	.sponsors__tier {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-4);
+		margin-bottom: var(--space-10);
+	}
+
+	.sponsors__tier h3 {
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 0;
+		color: var(--color-text-secondary);
+	}
+
+	.sponsor-logo {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-6) var(--space-10);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		transition: transform var(--duration-base) var(--ease-default),
+			box-shadow var(--duration-base) var(--ease-default),
+			border-color var(--duration-base) var(--ease-default);
+	}
+
+	.sponsor-logo:hover {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+		border-color: var(--color-primary);
+	}
+
+	.sponsor-logo img {
+		max-height: 3rem;
+		width: auto;
+	}
+</style>

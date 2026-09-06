@@ -1,0 +1,103 @@
+---
+import Container from '../ui/Container.astro';
+---
+
+<section id="speakers" class="speakers" aria-labelledby="speakers-title">
+  <Container as="div">
+    <header class="speakers__header">
+      <h2 id="speakers-title" class="speakers__title">Speakers</h2>
+      <p class="speakers__intro">
+        Un grupo diverso de expertos y expertas comparte su conocimiento, experiencias y
+        aprendizajes con la comunidad tecnológica de Cusco.
+      </p>
+      <p class="speakers__tagline">Charlas y workshops prácticos, reales y cercanos.</p>
+    </header>
+
+    <div class="speakers__grid" role="list">
+      <!-- Placeholder speakers -->
+      {
+        Array.from({ length: 8 }).map((_, index) => (
+          <article class="speaker-card" role="listitem">
+            <img src={`https://placehold.co/400x400/ffffff/4285f4?text=SP${index + 1}`} alt={`Foto del speaker ${index + 1}`} loading="lazy" />
+            <h3>Speaker {index + 1}</h3>
+            <p>Rol o charla</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+	.speakers {
+		padding-block: var(--space-20);
+		background: var(--color-bg);
+	}
+
+	.speakers__header {
+		text-align: center;
+		max-width: 50rem;
+		margin-inline: auto;
+		margin-bottom: var(--space-12);
+	}
+
+	.speakers__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		margin: 0 0 var(--space-4);
+		color: var(--color-text);
+	}
+
+	.speakers__intro,
+	.speakers__tagline {
+		margin: 0;
+		color: var(--color-text-secondary);
+	}
+
+	.speakers__tagline {
+		margin-top: var(--space-2);
+		font-weight: 500;
+	}
+
+	.speakers__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+		gap: var(--space-6);
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.speaker-card {
+		text-align: center;
+	}
+
+	.speaker-card img {
+		width: 100%;
+		aspect-ratio: 1;
+		object-fit: cover;
+		border-radius: var(--radius-full);
+		border: 2px solid var(--color-border);
+		background: var(--color-surface);
+		transition: transform var(--duration-base) var(--ease-default),
+			border-color var(--duration-base) var(--ease-default);
+	}
+
+	.speaker-card:hover img {
+		transform: scale(1.03);
+		border-color: var(--color-primary);
+	}
+
+	.speaker-card h3 {
+		margin: var(--space-3) 0 0;
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.speaker-card p {
+		margin: var(--space-1) 0 0;
+		font-size: 0.875rem;
+		color: var(--color-text-secondary);
+	}
+</style>

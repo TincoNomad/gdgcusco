@@ -1,0 +1,72 @@
+---
+import Container from '../ui/Container.astro';
+import { allyLogos } from '../../data/site.ts';
+---
+
+<section id="aliados" class="allies" aria-labelledby="allies-title">
+  <Container as="div">
+    <h2 id="allies-title" class="allies__title">Aliados</h2>
+
+    <ul class="allies__grid" role="list">
+      {
+        allyLogos.map((ally) => (
+          <li role="listitem">
+            <a href={ally.href} target="_blank" rel="noopener" title={ally.name}>
+              <img src={ally.src} alt={`Logo de ${ally.name}`} loading="lazy" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+</section>
+
+<style>
+	.allies {
+		padding-block: var(--space-20);
+		background: var(--color-section-alt);
+	}
+
+	.allies__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		text-align: center;
+		margin: 0 0 var(--space-10);
+		color: var(--color-text);
+	}
+
+	.allies__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+		gap: var(--space-4);
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.allies__grid li {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 5rem;
+		padding: var(--space-4);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		transition: transform var(--duration-base) var(--ease-default),
+			box-shadow var(--duration-base) var(--ease-default),
+			border-color var(--duration-base) var(--ease-default);
+	}
+
+	.allies__grid li:hover {
+		transform: scale(1.03);
+		box-shadow: var(--shadow-md);
+		border-color: var(--color-primary);
+	}
+
+	.allies__grid img {
+		max-width: 8rem;
+		max-height: 2.5rem;
+		object-fit: contain;
+	}
+</style>

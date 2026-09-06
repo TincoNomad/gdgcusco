@@ -1,0 +1,37 @@
+---
+import Container from './ui/Container.astro';
+import SocialLinks from './ui/SocialLinks.astro';
+import { siteConfig, footerEditions } from '../data/site.ts';
+---
+
+<footer class="site-footer">
+  <Container as="div">
+    <nav class="site-footer__editions" aria-label="Ediciones anteriores">
+      <ul>
+        {
+          footerEditions.map((edition) => (
+            <li>
+              <a href={edition.href}>{edition.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-footer__brand">
+      <img src="/images/logo.svg" alt={`${siteConfig.name} logo`} width="40" height="40" />
+      <p>© Copyright {siteConfig.organizer} 2026</p>
+    </div>
+
+    <SocialLinks class="site-footer__social" />
+
+    <div class="site-footer__legal">
+      <a href={siteConfig.codeOfConduct} target="_blank" rel="noopener">
+        Code of Conduct
+      </a>
+      <p>
+        Design made with ❤️ by <a href="https://dappsco.io/" target="_blank" rel="noopener">DappsCo</a>
+      </p>
+    </div>
+  </Container>
+</footer>

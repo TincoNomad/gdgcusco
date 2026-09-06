@@ -1,0 +1,184 @@
+---
+import Container from '../ui/Container.astro';
+import { siteConfig } from '../../data/site.ts';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <!--div class="hero__background" aria-hidden="true">
+    <img src="https://placehold.co/1200x800/d8f0fe/4285f4?text=Hero+Background" alt="" />
+  </div-->
+
+  <Container as="div">
+    <div class="hero__content">
+      <span class="hero__eyebrow">{siteConfig.tagline}</span>
+      <h1 id="hero-title" class="hero__title">{siteConfig.name}</h1>
+
+      <!--div class="hero__sponsor">
+        <span>By</span>
+        <img src="https://placehold.co/200x50/ffffff/4285f4?text=Interledger" alt="Patrocinador principal" width="120" height="30" />
+      </div-->
+
+      <p class="hero__subtitle">
+        Tecnología que se amplifica<br />desde Cusco
+      </p>
+
+      <p class="hero__description">{siteConfig.description}</p>
+
+      <div class="hero__actions">
+        <a href="#agenda">Ver agenda</a>
+        <a href="#sponsors">Patrocinar</a>
+      </div>
+    </div>
+  </Container>
+
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		min-height: calc(100vh - var(--header-height));
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-block: var(--space-16);
+		overflow: hidden;
+		background: var(--color-section-alt);
+	}
+
+	.hero__background {
+		position: absolute;
+		inset: 0;
+		opacity: 0.15;
+		pointer-events: none;
+	}
+
+	.hero__background img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.hero > .container {
+		position: relative;
+		z-index: 1;
+	}
+
+	.hero__content {
+		max-width: 50rem;
+		margin-inline: auto;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-5);
+	}
+
+	.hero__eyebrow {
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: var(--color-primary);
+	}
+
+	.hero__title {
+		font-size: clamp(2.75rem, 8vw, 5rem);
+		font-weight: 900;
+		line-height: 1.05;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.hero__sponsor {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-2);
+		margin-inline: auto;
+		padding: var(--space-2) var(--space-4);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		background: var(--color-surface);
+		font-size: 0.875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-text-secondary);
+	}
+
+	.hero__sponsor img {
+		height: 1.75rem;
+		width: auto;
+	}
+
+	.hero__subtitle {
+		font-size: clamp(1.25rem, 3vw, 1.75rem);
+		font-weight: 400;
+		margin: 0;
+		color: var(--color-text-secondary);
+	}
+
+	.hero__subtitle br {
+		display: none;
+	}
+
+	.hero__description {
+		font-size: 1.125rem;
+		color: var(--color-text-secondary);
+		max-width: 40rem;
+		margin-inline: auto;
+	}
+
+	.hero__actions {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		justify-content: center;
+		margin-top: var(--space-4);
+	}
+
+	.hero__actions a:first-child {
+		background: var(--color-primary);
+		color: var(--color-text-on-primary);
+		border-color: var(--color-primary);
+	}
+
+	.hero__actions a:first-child:hover {
+		background: var(--color-primary-hover);
+	}
+
+	.hero__actions a:last-child {
+		background: transparent;
+		color: var(--color-primary);
+		border-color: var(--color-primary);
+	}
+
+	.hero__actions a:last-child:hover {
+		background: var(--color-primary-light);
+	}
+
+	.hero__actions a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-3) var(--space-6);
+		border-radius: var(--radius-full);
+		font-weight: 600;
+		border: 1px solid;
+		transition: transform var(--duration-base) var(--ease-default),
+			background-color var(--duration-base) var(--ease-default),
+			border-color var(--duration-base) var(--ease-default);
+	}
+
+	.hero__actions a:hover {
+		transform: translateY(-2px);
+	}
+
+	@media (min-width: 768px) {
+		.hero__subtitle br {
+			display: block;
+		}
+
+		.hero__actions {
+			flex-direction: row;
+		}
+	}
+</style>

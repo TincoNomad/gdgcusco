@@ -1,0 +1,134 @@
+---
+import Container from '../ui/Container.astro';
+import { siteConfig } from '../../data/site.ts';
+---
+
+<section class="event-info" aria-labelledby="event-info-title">
+  <Container as="div">
+    <div class="event-info__location">
+      <span class="event-info__icon" aria-hidden="true">📍</span>
+      <span class="event-info__venue">{siteConfig.location.venue}</span>
+      <span class="event-info__city">· {siteConfig.location.city}</span>
+    </div>
+
+    <h2 id="event-info-title" class="event-info__date">{siteConfig.date}</h2>
+
+    <div class="event-info__countdown" aria-label="Cuenta regresiva para el evento">
+      <div>
+        <span id="cd-days">00</span>
+        <span>Días</span>
+      </div>
+      <div>
+        <span id="cd-hours">00</span>
+        <span>Horas</span>
+      </div>
+      <div>
+        <span id="cd-minutes">00</span>
+        <span>Minutos</span>
+      </div>
+      <div>
+        <span id="cd-seconds">00</span>
+        <span>Segundos</span>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+	.event-info {
+		padding-block: var(--space-16);
+		text-align: center;
+		background: var(--color-bg);
+	}
+
+	.event-info > .container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-6);
+	}
+
+	.event-info__location {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-3);
+		padding: var(--space-3) var(--space-6);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-sm);
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: var(--color-text);
+	}
+
+	.event-info__city {
+		font-weight: 400;
+		color: var(--color-text-secondary);
+	}
+
+	.event-info__date {
+		font-size: clamp(2rem, 6vw, 4rem);
+		font-weight: 700;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.event-info__countdown {
+		display: flex;
+		gap: var(--space-4);
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.event-info__countdown > div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-width: 5rem;
+		padding: var(--space-4) var(--space-5);
+		border-radius: var(--radius-lg);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.event-info__countdown span:first-child {
+		font-size: 2rem;
+		font-weight: 700;
+		line-height: 1;
+		color: var(--color-primary);
+	}
+
+	.event-info__countdown span:last-child {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-text-secondary);
+		margin-top: var(--space-2);
+	}
+</style>
+
+<script>
+  const targetDate = new Date('2026-08-14T14:00:00Z').getTime();
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const elements = {
+    days: document.getElementById('cd-days'),
+    hours: document.getElementById('cd-hours'),
+    minutes: document.getElementById('cd-minutes'),
+    seconds: document.getElementById('cd-seconds'),
+  };
+
+  function updateCountdown() {
+    const diff = targetDate - Date.now();
+    if (diff <= 0) return;
+    const totalSeconds = Math.floor(diff / 1000);
+    if (elements.days) elements.days.textContent = pad(Math.floor(totalSeconds / 86400));
+    if (elements.hours) elements.hours.textContent = pad(Math.floor((totalSeconds % 86400) / 3600));
+    if (elements.minutes) elements.minutes.textContent = pad(Math.floor((totalSeconds % 3600) / 60));
+    if (elements.seconds) elements.seconds.textContent = pad(totalSeconds % 60);
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>

@@ -1,0 +1,149 @@
+---
+import Container from '../ui/Container.astro';
+
+const photos = Array.from({ length: 6 }).map((_, index) => ({
+  src: `https://placehold.co/320x214/ffffff/4285f4?text=Photo+${index + 1}`,
+  alt: `Foto de DevFest ${index + 1}`,
+}));
+---
+
+<section class="photos" aria-labelledby="photos-title">
+  <Container as="div">
+    <h2 id="photos-title" class="photos__title">Fotos</h2>
+    <p class="photos__description">
+      Un vistazo a lo que se vivió en ediciones anteriores de DevFest.
+    </p>
+
+    <figure class="photos__featured">
+      <img src="https://placehold.co/900x600/ffffff/4285f4?text=Featured+Photo" alt="Foto destacada de DevFest" />
+      <figcaption>1 / 50</figcaption>
+    </figure>
+
+    <ul class="photos__grid" role="list">
+      {
+        photos.map((photo) => (
+          <li role="listitem">
+            <img src={photo.src} alt={photo.alt} loading="lazy" />
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="https://drive.google.com/drive/folders/example"
+      target="_blank"
+      rel="noopener"
+      class="photos__link"
+    >
+      Ver álbum completo
+    </a>
+  </Container>
+</section>
+
+<style>
+	.photos {
+		padding-block: var(--space-20);
+		background: var(--color-bg);
+	}
+
+	.photos > .container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-6);
+	}
+
+	.photos__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.photos__description {
+		margin: 0;
+		color: var(--color-text-secondary);
+		text-align: center;
+	}
+
+	.photos__featured {
+		position: relative;
+		width: 100%;
+		max-width: 56rem;
+		margin: 0;
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		background: var(--color-surface);
+		box-shadow: var(--shadow-lg);
+		border: 1px solid var(--color-border);
+	}
+
+	.photos__featured img {
+		width: 100%;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+	}
+
+	.photos__featured figcaption {
+		position: absolute;
+		bottom: var(--space-3);
+		left: var(--space-3);
+		padding: var(--space-1) var(--space-3);
+		background: var(--color-primary);
+		color: var(--color-text-on-primary);
+		border-radius: var(--radius-full);
+		font-size: 0.875rem;
+		font-weight: 600;
+	}
+
+	.photos__grid {
+		display: flex;
+		gap: var(--space-3);
+		width: 100%;
+		max-width: 56rem;
+		padding: var(--space-2);
+		margin: 0;
+		list-style: none;
+		overflow-x: auto;
+		scroll-snap-type: x proximity;
+	}
+
+	.photos__grid li {
+		flex: 0 0 auto;
+		width: 6rem;
+		height: 4rem;
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		border: 2px solid transparent;
+		scroll-snap-align: center;
+		transition: transform var(--duration-base) var(--ease-default),
+			border-color var(--duration-base) var(--ease-default);
+	}
+
+	.photos__grid li:hover {
+		transform: translateY(-2px);
+		border-color: var(--color-primary);
+	}
+
+	.photos__grid img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.photos__link {
+		padding: var(--space-3) var(--space-6);
+		border: 1px solid var(--color-primary);
+		border-radius: var(--radius-full);
+		font-weight: 600;
+		color: var(--color-primary);
+		background: var(--color-surface);
+		transition: background-color var(--duration-base) var(--ease-default),
+			color var(--duration-base) var(--ease-default);
+	}
+
+	.photos__link:hover {
+		background: var(--color-primary);
+		color: var(--color-text-on-primary);
+	}
+</style>

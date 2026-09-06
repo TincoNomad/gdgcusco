@@ -1,0 +1,99 @@
+---
+import Container from '../ui/Container.astro';
+---
+
+<section id="about-us" class="about" aria-labelledby="about-title">
+  <Container as="div">
+    <h2 id="about-title" class="about__title">¿Qué es DevFest?</h2>
+
+    <div class="about__divider" aria-hidden="true"></div>
+
+    <div class="about__content">
+      <p class="about__lead">
+        DevFest es más que una conferencia de tecnología.
+      </p>
+      <p>
+        DevFest es la conferencia insignia de GDG Cusco, la comunidad que reúne a más de 15
+        comunidades tecnológicas de Cusco y la región.
+      </p>
+      <p>
+        Durante dos días, desarrolladores, diseñadores, emprendedores y líderes de tecnología se
+        conectan para aprender, compartir experiencias y crear oportunidades que impulsan el
+        crecimiento profesional y fortalecen el ecosistema regional.
+      </p>
+      <p>
+        En su primera edición reunió speakers de Colombia, Chile, Perú, Canadá, Europa y Estados
+        Unidos. En 2026 contará con invitados nacionales e internacionales y referentes del
+        ecosistema emprendedor.
+      </p>
+      <p>
+        Aprende, expande tu red de contactos y descubre cómo desde Cusco se construye
+        tecnología para el mundo.
+      </p>
+    </div>
+  </Container>
+</section>
+
+<style>
+	.about {
+		padding-block: var(--space-20);
+		background: var(--color-primary);
+		color: var(--color-text-on-primary);
+	}
+
+	.about > .container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+	}
+
+	.about__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		margin: 0;
+	}
+
+	.about__divider {
+		display: none;
+		width: 2px;
+		background: rgba(255, 255, 255, 0.35);
+		align-self: stretch;
+	}
+
+	.about__content {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.about__content p {
+		margin: 0;
+		opacity: 0.92;
+	}
+
+	.about__lead {
+		font-size: 1.25rem;
+		font-weight: 600;
+		opacity: 1 !important;
+	}
+
+	@media (min-width: 1024px) {
+		.about > .container {
+			flex-direction: row;
+			gap: var(--space-12);
+		}
+
+		.about__title {
+			max-width: 25rem;
+			flex-shrink: 0;
+		}
+
+		.about__divider {
+			display: block;
+		}
+
+		.about__content {
+			padding-block: var(--space-4);
+		}
+	}
+</style>

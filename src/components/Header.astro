@@ -1,0 +1,38 @@
+---
+import Container from './ui/Container.astro';
+import { siteConfig, navigation } from '../data/site.ts';
+---
+
+<header class="site-header">
+  <Container as="div">
+    <a href="/" class="site-header__brand">
+      <img src="/images/logo.svg" alt={`${siteConfig.name} logo`} />
+      <span>{siteConfig.date}</span>
+    </a>
+
+    <button
+      type="button"
+      class="site-header__menu-toggle"
+      aria-expanded="false"
+      aria-controls="site-header-menu"
+      aria-label="Abrir menú de navegación"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-header__nav" id="site-header-menu" aria-label="Navegación principal">
+      <ul>
+        {
+          navigation.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+  </Container>
+</header>

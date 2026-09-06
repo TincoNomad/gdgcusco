@@ -1,0 +1,42 @@
+---
+import { siteConfig } from '../../data/site.ts';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<ul class={`social-links ${className}`} role="list" aria-label="Redes sociales">
+  <li>
+    <a href={siteConfig.social.instagram} target="_blank" rel="noopener">
+      <span class="sr-only">Instagram</span>
+      <span aria-hidden="true">IG</span>
+    </a>
+  </li>
+  <li>
+    <a href={siteConfig.social.twitch} target="_blank" rel="noopener">
+      <span class="sr-only">Twitch</span>
+      <span aria-hidden="true">TW</span>
+    </a>
+  </li>
+  <li>
+    <a href={siteConfig.social.x} target="_blank" rel="noopener">
+      <span class="sr-only">X</span>
+      <span aria-hidden="true">X</span>
+    </a>
+  </li>
+  <li>
+    <a href={siteConfig.social.linkedin} target="_blank" rel="noopener">
+      <span class="sr-only">LinkedIn</span>
+      <span aria-hidden="true">LI</span>
+    </a>
+  </li>
+  <li>
+    <a href={siteConfig.social.github} target="_blank" rel="noopener">
+      <span class="sr-only">GitHub</span>
+      <span aria-hidden="true">GH</span>
+    </a>
+  </li>
+</ul>

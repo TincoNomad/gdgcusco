@@ -1,0 +1,268 @@
+---
+import Container from '../ui/Container.astro';
+
+const dayOne = [
+  { time: '9:00 – 9:20', title: 'Bienvenida', type: 'session' },
+  { time: '9:25 – 9:40', title: 'Ingeniería de humor: campos semánticos con LLMs', speaker: 'Rob Rimola', type: 'talk' },
+  { time: '9:45 – 10:15', title: 'Hacking Your Life with AI', speaker: 'Oscar Barajas', type: 'talk' },
+  { time: '10:20 – 10:40', title: 'Vibecoding, Vibe Engineer y la transformación del rol del programador', speaker: 'Harold Combita', type: 'talk' },
+  { time: '12:00 – 14:00', title: 'Snack', type: 'break' },
+];
+
+const dayTwo = [
+  { time: '8:00 – 9:00', title: 'Bienvenida', type: 'session' },
+  { time: '9:00 – 9:20', title: 'Cómo una charla en este escenario me cambió la vida', speaker: 'Erasmo Hernández', type: 'talk' },
+  { time: '9:25 – 9:45', title: '¿Agentes para Pagos? Sí, con Open Payments es Posible.', speaker: 'Marian Villa', type: 'talk' },
+  { time: '9:50 – 10:20', title: 'Snack', type: 'break' },
+  { time: '12:00 – 13:30', title: 'Almuerzo', type: 'break' },
+  { time: '17:25', title: 'Clausura', type: 'session' },
+];
+---
+
+<section id="agenda" class="agenda" aria-labelledby="agenda-title">
+  <Container as="div">
+    <h2 id="agenda-title" class="agenda__title">Agenda</h2>
+
+    <div class="agenda__tabs" role="tablist" aria-label="Días de la agenda">
+      <!--button type="button" role="tab" aria-selected="true" id="tab-day-1" aria-controls="panel-day-1"-->
+        Día 1
+        <span>14 Ago</span>
+        <!--/button-->
+      <!--button type="button" role="tab" aria-selected="false" id="tab-day-2" aria-controls="panel-day-2">
+        Día 2
+        <span>15 Ago</span>
+      </button-->
+    </div>
+
+    <div id="panel-day-1" role="tabpanel" aria-labelledby="tab-day-1" class="agenda__panel">
+      <ol class="agenda__list">
+        {
+          dayOne.map((item) => (
+            <li class={`agenda__item agenda__item--${item.type}`}>
+              <time>{item.time}</time>
+              <div>
+                <h3>{item.title}</h3>
+                {item.speaker && <p>{item.speaker}</p>}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div id="panel-day-2" role="tabpanel" aria-labelledby="tab-day-2" class="agenda__panel" hidden>
+      <ol class="agenda__list">
+        {
+          dayTwo.map((item) => (
+            <li class={`agenda__item agenda__item--${item.type}`}>
+              <time>{item.time}</time>
+              <div>
+                <h3>{item.title}</h3>
+                {item.speaker && <p>{item.speaker}</p>}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </Container>
+</section>
+
+<style>
+	.agenda {
+		padding-block: var(--space-20);
+		background: var(--color-section-alt);
+	}
+
+	.agenda__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		text-align: center;
+		margin: 0 0 var(--space-10);
+		color: var(--color-text);
+	}
+
+	.agenda__tabs {
+		display: flex;
+		justify-content: center;
+		gap: var(--space-2);
+		padding: var(--space-2);
+		margin-bottom: var(--space-10);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		background: var(--color-bg);
+		width: fit-content;
+		margin-inline: auto;
+	}
+
+	.agenda__tabs button {
+		padding: var(--space-2) var(--space-6);
+		border: 0;
+		border-radius: var(--radius-full);
+		background: transparent;
+		font-weight: 600;
+		color: var(--color-text-secondary);
+		cursor: pointer;
+		transition: background-color var(--duration-base) var(--ease-default),
+			color var(--duration-base) var(--ease-default);
+	}
+
+	.agenda__tabs button[aria-selected='true'] {
+		background: var(--color-primary);
+		color: var(--color-text-on-primary);
+	}
+
+	.agenda__tabs button span {
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 400;
+		opacity: 0.8;
+	}
+
+	.agenda__list {
+		position: relative;
+		max-width: 50rem;
+		margin-inline: auto;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+	}
+
+	.agenda__list::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 1rem;
+		width: 2px;
+		background: var(--color-border);
+	}
+
+	.agenda__item {
+		position: relative;
+		display: grid;
+		grid-template-columns: 5rem 1fr;
+		gap: var(--space-4);
+		padding: var(--space-4) var(--space-5);
+		margin-left: 2rem;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+	}
+
+	.agenda__item::before {
+		content: '';
+		position: absolute;
+		left: -1.5rem;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: var(--radius-full);
+		background: var(--color-primary);
+		border: 2px solid var(--color-surface);
+	}
+
+	.agenda__item time {
+		font-weight: 700;
+		font-size: 0.875rem;
+		color: var(--color-primary);
+	}
+
+	.agenda__item h3 {
+		margin: 0;
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.agenda__item p {
+		margin: var(--space-1) 0 0;
+		font-size: 0.875rem;
+		color: var(--color-text-secondary);
+	}
+
+	.agenda__item--break,
+	.agenda__item--session {
+		justify-content: center;
+		text-align: center;
+		margin-left: 0;
+		grid-template-columns: 1fr;
+		background: var(--color-primary-light);
+		border-color: var(--color-primary);
+	}
+
+	.agenda__item--break::before,
+	.agenda__item--session::before {
+		display: none;
+	}
+
+	.agenda__item--break h3,
+	.agenda__item--session h3 {
+		font-size: 1.125rem;
+		color: var(--color-text);
+	}
+
+	.agenda__item--break time,
+	.agenda__item--session time {
+		color: var(--color-primary-hover);
+	}
+
+	@media (min-width: 768px) {
+		.agenda__list::before {
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.agenda__item {
+			width: calc(50% - var(--space-6));
+			margin-left: 0;
+		}
+
+		.agenda__item:nth-child(odd) {
+			margin-right: auto;
+		}
+
+		.agenda__item:nth-child(even) {
+			margin-left: auto;
+		}
+
+		.agenda__item::before {
+			left: auto;
+			right: -1.875rem;
+		}
+
+		.agenda__item:nth-child(even)::before {
+			right: auto;
+			left: -1.875rem;
+		}
+
+		.agenda__item--break,
+		.agenda__item--session {
+			width: 100%;
+			max-width: 30rem;
+			margin-inline: auto !important;
+		}
+	}
+</style>
+
+<script>
+  const tabs = document.querySelectorAll('[role="tab"]');
+  const panels = document.querySelectorAll('[role="tabpanel"]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('aria-controls');
+
+      tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
+      tab.setAttribute('aria-selected', 'true');
+
+      panels.forEach((panel) => {
+        const isTarget = panel.id === targetId;
+        panel.toggleAttribute('hidden', !isTarget);
+      });
+    });
+  });
+</script>

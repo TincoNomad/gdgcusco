@@ -1,0 +1,125 @@
+---
+import Container from '../ui/Container.astro';
+import { sponsorTiers, sponsorBenefits } from '../../data/site.ts';
+---
+
+<section class="become-sponsor" aria-labelledby="become-sponsor-title">
+  <Container as="div">
+    <div class="become-sponsor__content">
+      <h2 id="become-sponsor-title" class="become-sponsor__title">¡Conviértete en Sponsor!</h2>
+
+      <ul class="become-sponsor__tiers" aria-label="Niveles de patrocinio">
+        {
+          sponsorTiers.map((tier, index) => {
+            const icons = ['💎', '🟢', '⚪', '💠'];
+            return (
+              <li class="become-sponsor__tier">
+                <span class="become-sponsor__tier-icon" aria-hidden="true">{icons[index] || '💎'}</span>
+                <span>{tier.name}</span>
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <div class="become-sponsor__why">
+        <h3>¿Por qué patrocinarnos?</h3>
+        <ul>
+          {sponsorBenefits.map((benefit) => <li>{benefit}</li>)}
+        </ul>
+      </div>
+
+      <p class="become-sponsor__closing">
+        Tu apoyo será clave para impulsar la innovación, el talento y la diversidad en Cusco.
+      </p>
+    </div>
+
+    <div class="become-sponsor__image" aria-hidden="true">
+      <img src="https://placehold.co/400x400/d8f0fe/4285f4?text=Sponsors" alt="" />
+    </div>
+  </Container>
+</section>
+
+<style>
+	.become-sponsor {
+		padding-block: var(--space-20);
+		background: var(--color-bg);
+	}
+
+	.become-sponsor > .container {
+		display: grid;
+		gap: var(--space-10);
+		align-items: center;
+	}
+
+	.become-sponsor__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		margin: 0 0 var(--space-6);
+		color: var(--color-text);
+	}
+
+	.become-sponsor__tiers {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-4);
+		list-style: none;
+		padding: 0;
+		margin: 0 0 var(--space-8);
+	}
+
+	.become-sponsor__tier {
+		display: flex;
+		align-items: center;
+		gap: var(--space-2);
+		padding: var(--space-3) var(--space-5);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		font-weight: 600;
+		color: var(--color-text);
+	}
+
+	.become-sponsor__tier-icon {
+		font-size: 1.25rem;
+		line-height: 1;
+	}
+
+	.become-sponsor__why {
+		margin-bottom: var(--space-6);
+	}
+
+	.become-sponsor__why h3 {
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 0 0 var(--space-4);
+		color: var(--color-text);
+	}
+
+	.become-sponsor__why li {
+		color: var(--color-text-secondary);
+	}
+
+	.become-sponsor__closing {
+		font-weight: 600;
+		margin: 0;
+		color: var(--color-text);
+	}
+
+	.become-sponsor__image {
+		display: flex;
+		justify-content: center;
+	}
+
+	.become-sponsor__image img {
+		max-width: 20rem;
+		border-radius: var(--radius-lg);
+		background: var(--color-primary-light);
+	}
+
+	@media (min-width: 1024px) {
+		.become-sponsor > .container {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>
