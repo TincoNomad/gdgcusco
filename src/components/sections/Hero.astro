@@ -93,8 +93,8 @@ import { siteConfig } from '../../data/site.ts';
 	.hero__decorations {
 		--quadrant-size: 360px;
 		--quadrant-padding: 30px;
-		--decor-gap-y: 60px;
-		--decor-gap-x: 400px;
+		--decor-gap-y: clamp(50px, 7vh, 90px);
+		--decor-gap-x: clamp(80px, 13vw, 290px);
 
 		position: absolute;
 		inset: 0;
@@ -243,8 +243,8 @@ import { siteConfig } from '../../data/site.ts';
 
 	.hero__description {
 		font-size: 1.125rem;
-		color: var(--color-text-secondary);
-		max-width: 40rem;
+		color: var(--color-text);
+		max-width: 32rem;
 		margin-inline: auto;
 	}
 
