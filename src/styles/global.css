@@ -8,6 +8,18 @@
   --color-primary-light: #d8f0fe;
   --color-theme: #3d7ff5;
 
+  /* Gradients */
+  --gradient-red: linear-gradient(to bottom left, #FC4240, #FA5473);
+  --gradient-blue: linear-gradient(to bottom left, #3186FD, #919FFE);
+  --gradient-green: linear-gradient(to bottom left, #2BB055, #61C6DE);
+  --gradient-yellow: linear-gradient(to bottom left, #FFCC01, #FCEF52);
+
+  /* Pastel variants for backgrounds */
+  --color-red-pastel: #FED4DC;
+  --color-blue-pastel: #E4E7FF;
+  --color-green-pastel: #D8F1F7;
+  --color-yellow-pastel: #FEFBD4;
+
   --color-text: #212121;
   --color-text-secondary: #5f6368;
   --color-text-inverse: #ffffff;
@@ -346,24 +358,44 @@ h6 {
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-full);
   font-weight: 600;
-  background: var(--color-primary);
+  background: var(--gradient-blue);
   color: var(--color-text-on-primary);
-  border: 1px solid var(--color-primary);
-  transition: background-color var(--duration-base) var(--ease-default),
+  border: 1px solid transparent;
+  transition: filter var(--duration-base) var(--ease-default),
     transform var(--duration-base) var(--ease-default);
 }
 
 .button:hover {
-  background: var(--color-primary-hover);
+  filter: brightness(0.9);
   transform: translateY(-2px);
 }
 
 .button--outline {
+  position: relative;
   background: transparent;
   color: var(--color-primary);
-  border-color: var(--color-primary);
+  border-color: transparent;
+}
+
+.button--outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  padding: 1px;
+  background: var(--gradient-blue);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .button--outline:hover {
-  background: var(--color-primary-light);
+  background: var(--gradient-blue);
+  color: var(--color-text-on-primary);
 }

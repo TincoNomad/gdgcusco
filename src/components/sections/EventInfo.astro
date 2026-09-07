@@ -70,7 +70,7 @@ import { siteConfig } from '../../data/site.ts';
 	.event-info__date {
 		font-size: clamp(2rem, 6vw, 4rem);
 		font-weight: 700;
-		margin: 0;
+		margin-block: 3.125rem;
 		color: var(--color-text);
 	}
 
@@ -110,7 +110,7 @@ import { siteConfig } from '../../data/site.ts';
 </style>
 
 <script>
-  const targetDate = new Date('2026-08-14T14:00:00Z').getTime();
+  const targetDate = new Date('2026-11-07T14:00:00Z').getTime();
   const pad = (n: number) => String(n).padStart(2, '0');
   const elements = {
     days: document.getElementById('cd-days'),

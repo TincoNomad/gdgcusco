@@ -1,6 +1,13 @@
 ---
 import Container from '../ui/Container.astro';
 
+const agendaColors = [
+  { a: '#FC4240', b: '#FA5473' },
+  { a: '#3186FD', b: '#919FFE' },
+  { a: '#2BB055', b: '#61C6DE' },
+  { a: '#FFCC01', b: '#FCEF52' },
+];
+
 const dayOne = [
   { time: '9:00 – 9:20', title: 'Bienvenida', type: 'session' },
   { time: '9:25 – 9:40', title: 'Ingeniería de humor: campos semánticos con LLMs', speaker: 'Rob Rimola', type: 'talk' },
@@ -37,8 +44,8 @@ const dayTwo = [
     <div id="panel-day-1" role="tabpanel" aria-labelledby="tab-day-1" class="agenda__panel">
       <ol class="agenda__list">
         {
-          dayOne.map((item) => (
-            <li class={`agenda__item agenda__item--${item.type}`}>
+          dayOne.map((item, index) => (
+            <li class={`agenda__item agenda__item--${item.type} agenda__item--color-${index % agendaColors.length}`}>
               <time>{item.time}</time>
               <div>
                 <h3>{item.title}</h3>
@@ -53,8 +60,8 @@ const dayTwo = [
     <div id="panel-day-2" role="tabpanel" aria-labelledby="tab-day-2" class="agenda__panel" hidden>
       <ol class="agenda__list">
         {
-          dayTwo.map((item) => (
-            <li class={`agenda__item agenda__item--${item.type}`}>
+          dayTwo.map((item, index) => (
+            <li class={`agenda__item agenda__item--${item.type} agenda__item--color-${index % agendaColors.length}`}>
               <time>{item.time}</time>
               <div>
                 <h3>{item.title}</h3>
@@ -147,8 +154,7 @@ const dayTwo = [
 		gap: var(--space-4);
 		padding: var(--space-4) var(--space-5);
 		margin-left: 2rem;
-		background: var(--color-bg);
-		border: 1px solid var(--color-border);
+		border: 2px solid;
 		border-radius: var(--radius-lg);
 	}
 
@@ -161,14 +167,12 @@ const dayTwo = [
 		width: 0.75rem;
 		height: 0.75rem;
 		border-radius: var(--radius-full);
-		background: var(--color-primary);
 		border: 2px solid var(--color-surface);
 	}
 
 	.agenda__item time {
 		font-weight: 700;
 		font-size: 0.875rem;
-		color: var(--color-primary);
 	}
 
 	.agenda__item h3 {
@@ -184,14 +188,64 @@ const dayTwo = [
 		color: var(--color-text-secondary);
 	}
 
+	.agenda__item--color-0 {
+		background: var(--color-red-pastel);
+		border-color: #FC4240;
+	}
+
+	.agenda__item--color-1 {
+		background: var(--color-blue-pastel);
+		border-color: #3186FD;
+	}
+
+	.agenda__item--color-2 {
+		background: var(--color-green-pastel);
+		border-color: #2BB055;
+	}
+
+	.agenda__item--color-3 {
+		background: var(--color-yellow-pastel);
+		border-color: #FFCC01;
+	}
+
+	.agenda__item--color-0::before {
+		background: #FC4240;
+	}
+
+	.agenda__item--color-1::before {
+		background: #3186FD;
+	}
+
+	.agenda__item--color-2::before {
+		background: #2BB055;
+	}
+
+	.agenda__item--color-3::before {
+		background: #FFCC01;
+	}
+
+	.agenda__item--color-0 time {
+		color: #FC4240;
+	}
+
+	.agenda__item--color-1 time {
+		color: #3186FD;
+	}
+
+	.agenda__item--color-2 time {
+		color: #2BB055;
+	}
+
+	.agenda__item--color-3 time {
+		color: #FFCC01;
+	}
+
 	.agenda__item--break,
 	.agenda__item--session {
 		justify-content: center;
 		text-align: center;
 		margin-left: 0;
 		grid-template-columns: 1fr;
-		background: var(--color-primary-light);
-		border-color: var(--color-primary);
 	}
 
 	.agenda__item--break::before,
@@ -203,11 +257,6 @@ const dayTwo = [
 	.agenda__item--session h3 {
 		font-size: 1.125rem;
 		color: var(--color-text);
-	}
-
-	.agenda__item--break time,
-	.agenda__item--session time {
-		color: var(--color-primary-hover);
 	}
 
 	@media (min-width: 768px) {
