@@ -32,8 +32,9 @@ export const siteConfig: SiteConfig = {
 };
 
 export const navigation: NavItem[] = [
+  { label: "Inicio", href: "#" },
   { label: "Speakers", href: "#speakers" },
-  { label: "Sponsors", href: "#sponsors" },
+  { label: "Sponsors", href: "#become-sponsor" },
   { label: "Agenda", href: "#agenda" },
   { label: "Aliados", href: "#aliados" },
 ];
