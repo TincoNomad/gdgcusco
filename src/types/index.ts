@@ -33,6 +33,8 @@ export interface Stat {
 export interface SponsorTier {
   id: string;
   name: string;
+  featured?: boolean;
+  icon: string;
 }
 
 export interface Ally {

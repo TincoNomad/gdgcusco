@@ -45,16 +45,17 @@ export const stats: Stat[] = [
 ];
 
 export const sponsorTiers: SponsorTier[] = [
-  { id: "corindon", name: "Corindón" },
-  { id: "esmeralda", name: "Esmeralda" },
-  { id: "perla", name: "Perla" },
-  { id: "cuarzo", name: "Cuarzo" },
+  { id: "plata", name: "Plata", icon: "/images/rojo.webp" },
+  { id: "oro", name: "Oro", featured: true, icon: "/images/amarillo.webp" },
+  { id: "diamante", name: "Diamante", icon: "/images/verde.webp" },
 ];
 
 export const sponsorBenefits: string[] = [
-  "Acceso al talento: DevFest reúne a los mejores devs y líderes de comunidad de la región.",
-  "Visibilidad de marca: asegúrate de ser reconocido como aliado en la industria tecnológica.",
-  "Impacto regional: Somos un ecosistema tecnológico emergente con alto potencial.",
+  "Presencia destacada en piezas gráficas físicas y digitales.",
+  "Mención especial al inicio y cierre del evento.",
+  "Inclusión en publicaciones en redes sociales.",
+  "Logo en flyers y fotos oficiales.",
+  "Y mas",
 ];
 
 export const allyLogos: Ally[] = [

@@ -25,8 +25,13 @@ import { siteConfig } from '../../data/site.ts';
       <p class="hero__description">{siteConfig.description}</p>
 
       <div class="hero__actions">
-        <a href="#agenda">Ver agenda</a>
-        <a href="#sponsors">Patrocinar</a>
+        <div class="hero__actions-row">
+          <a href="#" class="hero__actions-primary">Participar</a>
+          <a href="#" class="hero__actions-secondary">Patrocinar</a>
+        </div>
+        <div class="hero__actions-row">
+          <a href="#" class="hero__actions-tertiary">Dar una charla</a>
+        </div>
       </div>
     </div>
   </Container>
@@ -253,7 +258,16 @@ import { siteConfig } from '../../data/site.ts';
 		flex-direction: column;
 		gap: var(--space-3);
 		justify-content: center;
+		align-items: center;
 		margin-top: var(--space-4);
+	}
+
+	.hero__actions-row {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+		width: 100%;
+		justify-content: center;
 	}
 
 	.hero__actions a {
@@ -276,21 +290,23 @@ import { siteConfig } from '../../data/site.ts';
 		transform: translateY(-2px);
 	}
 
-	.hero__actions a:first-child {
+	.hero__actions-primary {
 		background: var(--gradient-blue);
 		color: var(--color-text-on-primary);
 	}
 
-	.hero__actions a:first-child:hover {
+	.hero__actions-primary:hover {
 		filter: brightness(0.9);
 	}
 
-	.hero__actions a:last-child {
+	.hero__actions-secondary,
+	.hero__actions-tertiary {
 		background: transparent;
 		color: var(--color-primary);
 	}
 
-	.hero__actions a:last-child::before {
+	.hero__actions-secondary::before,
+	.hero__actions-tertiary::before {
 		content: '';
 		position: absolute;
 		inset: 0;
@@ -308,7 +324,8 @@ import { siteConfig } from '../../data/site.ts';
 		pointer-events: none;
 	}
 
-	.hero__actions a:last-child:hover {
+	.hero__actions-secondary:hover,
+	.hero__actions-tertiary:hover {
 		background: var(--gradient-blue);
 		color: var(--color-text-on-primary);
 	}
@@ -361,7 +378,7 @@ import { siteConfig } from '../../data/site.ts';
 			display: block;
 		}
 
-		.hero__actions {
+		.hero__actions-row {
 			flex-direction: row;
 		}
 	}

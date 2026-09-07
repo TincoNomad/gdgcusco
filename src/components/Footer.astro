@@ -6,32 +6,41 @@ import { siteConfig, footerEditions } from '../data/site.ts';
 
 <footer class="site-footer">
   <Container as="div">
-    <nav class="site-footer__editions" aria-label="Ediciones anteriores">
-      <ul>
-        {
-          footerEditions.map((edition) => (
-            <li>
-              <a href={edition.href}>{edition.label}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <div class="site-footer__top">
+      <div class="site-footer__left">
+        <nav class="site-footer__editions" aria-label="Ediciones anteriores">
+          <ul>
+            {
+              footerEditions.map((edition) => (
+                <li>
+                  <a href={edition.href}>{edition.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
 
-    <div class="site-footer__brand">
-      <img src="/images/logo.svg" alt={`${siteConfig.name} logo`} width="40" height="40" />
-      <p>© Copyright {siteConfig.organizer} 2026</p>
+        <div class="site-footer__brand">
+          <img src="/images/logo.svg" alt={`${siteConfig.name} logo`} width="40" height="40" />
+        </div>
+      </div>
+
+      <!--SocialLinks class="site-footer__social" /-->
+
+      <div class="site-footer__legal">
+        <!--a href={siteConfig.codeOfConduct} target="_blank" rel="noopener">
+          Code of Conduct
+        </a-->
+        <p>
+          Design made with ❤️ by <a href="https://github.com/TincoNomad" target="_blank" rel="noopener">Tinconomad</a>
+        </p>
+      </div>
     </div>
 
-    <SocialLinks class="site-footer__social" />
+    <p class="site-footer__inspiration">
+      Esta página está inspirada en el diseño de <a href="https://devfestilorin.com/" target="_blank" rel="noopener">DevFest Ilorin</a> 2026
+    </p>
 
-    <div class="site-footer__legal">
-      <a href={siteConfig.codeOfConduct} target="_blank" rel="noopener">
-        Code of Conduct
-      </a>
-      <p>
-        Design made with ❤️ by <a href="https://dappsco.io/" target="_blank" rel="noopener">DappsCo</a>
-      </p>
-    </div>
+    <p class="site-footer__copyright">© Copyright {siteConfig.organizer} 2026</p>
   </Container>
 </footer>
