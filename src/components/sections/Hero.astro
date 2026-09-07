@@ -303,8 +303,8 @@ import { siteConfig } from '../../data/site.ts';
 
 	@media (max-width: 767px) {
 		.hero__decorations {
-			--quadrant-size: 160px;
-			--quadrant-padding: 16px;
+			--quadrant-size: 200px;
+			--quadrant-padding: 24px;
 			--decor-gap-x: 0px;
 			--decor-gap-y: 0px;
 		}
@@ -313,24 +313,26 @@ import { siteConfig } from '../../data/site.ts';
 			border-radius: var(--radius-lg);
 		}
 
-		.hero__quadrant--green {
+		.hero__quadrant:nth-child(2) {
 			display: none;
 		}
 
 		.hero__quadrant:nth-child(1) {
-			transform: translate(-50%, -50%);
-		}
-
-		.hero__quadrant:nth-child(2) {
-			transform: translate(50%, -50%);
+			top: var(--header-height);
+			left: 0;
+			transform: translate(-50%, 0%);
 		}
 
 		.hero__quadrant:nth-child(3) {
-			transform: translate(-50%, 50%);
+			bottom: 0;
+			left: 0;
+			transform: translate(-50%, 0%);
 		}
 
-		.hero__quadrant img {
-			animation: none;
+		.hero__quadrant:nth-child(4) {
+			top: 50%;
+			right: 0;
+			transform: translate(50%, -50%);
 		}
 	}
 
