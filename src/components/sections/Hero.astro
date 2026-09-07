@@ -31,6 +31,21 @@ import { siteConfig } from '../../data/site.ts';
     </div>
   </Container>
 
+  <div class="hero__decorations" aria-hidden="true">
+    <div class="hero__quadrant">
+      <img src="/images/amarillo.webp" alt="" loading="lazy" />
+    </div>
+    <div class="hero__quadrant">
+      <img src="/images/azul.webp" alt="" loading="lazy" />
+    </div>
+    <div class="hero__quadrant">
+      <img src="/images/rojo.webp" alt="" loading="lazy" />
+    </div>
+    <div class="hero__quadrant hero__quadrant--green">
+      <img src="/images/verde.webp" alt="" loading="lazy" />
+    </div>
+  </div>
+
 </section>
 
 <style>
@@ -38,10 +53,11 @@ import { siteConfig } from '../../data/site.ts';
 		position: relative;
 		min-height: calc(100vh - var(--header-height));
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		padding-block: var(--space-16);
-		overflow: hidden;
+		overflow: clip;
 		background: var(--color-section-alt);
 	}
 
@@ -66,10 +82,114 @@ import { siteConfig } from '../../data/site.ts';
 	.hero__content {
 		max-width: 50rem;
 		margin-inline: auto;
+		margin-block: auto;
 		text-align: center;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-5);
+	}
+
+	.hero__decorations {
+		--quadrant-size: 300px;
+		--decor-gap: 60px;
+
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.hero__quadrant {
+		position: absolute;
+		width: var(--quadrant-size);
+		height: var(--quadrant-size);
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		background: var(--color-surface);
+		box-shadow: var(--shadow-lg);
+		border: 1px solid var(--color-border);
+	}
+
+	.hero__quadrant:nth-child(1) {
+		top: calc(var(--header-height) + var(--decor-gap));
+		left: var(--decor-gap);
+	}
+
+	.hero__quadrant:nth-child(2) {
+		top: calc(var(--header-height) + var(--decor-gap));
+		right: var(--decor-gap);
+	}
+
+	.hero__quadrant:nth-child(3) {
+		bottom: var(--decor-gap);
+		left: var(--decor-gap);
+	}
+
+	.hero__quadrant:nth-child(4) {
+		bottom: var(--decor-gap);
+		right: var(--decor-gap);
+	}
+
+	.hero__quadrant img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transform-origin: center center;
+		animation: bounce-1 4.5s ease-in-out infinite;
+	}
+
+	.hero__quadrant:nth-child(2) img {
+		animation-name: bounce-2;
+		animation-duration: 5s;
+		animation-delay: -1s;
+	}
+
+	.hero__quadrant:nth-child(3) img {
+		animation-name: bounce-3;
+		animation-duration: 4s;
+		animation-delay: -2s;
+	}
+
+	.hero__quadrant:nth-child(4) img {
+		animation-name: bounce-4;
+		animation-duration: 5.5s;
+		animation-delay: -0.5s;
+	}
+
+	@keyframes bounce-1 {
+		0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+		20% { transform: translate(30px, -40px) rotate(3deg) scale(1.02); }
+		40% { transform: translate(-25px, 15px) rotate(-2deg) scale(0.98); }
+		60% { transform: translate(20px, 30px) rotate(2deg) scale(1.01); }
+		80% { transform: translate(-15px, -20px) rotate(-1deg) scale(0.99); }
+	}
+
+	@keyframes bounce-2 {
+		0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+		25% { transform: translate(-35px, -25px) rotate(-3deg) scale(1.03); }
+		50% { transform: translate(25px, 35px) rotate(2deg) scale(0.97); }
+		75% { transform: translate(-20px, -30px) rotate(-2deg) scale(1.01); }
+	}
+
+	@keyframes bounce-3 {
+		0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+		20% { transform: translate(25px, 30px) rotate(2deg) scale(0.98); }
+		40% { transform: translate(-30px, -20px) rotate(-3deg) scale(1.02); }
+		60% { transform: translate(35px, -35px) rotate(1deg) scale(1.03); }
+		80% { transform: translate(-15px, 25px) rotate(-1deg) scale(0.99); }
+	}
+
+	@keyframes bounce-4 {
+		0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+		25% { transform: translate(-20px, 35px) rotate(-2deg) scale(1.01); }
+		50% { transform: translate(30px, -25px) rotate(3deg) scale(0.98); }
+		75% { transform: translate(-25px, -15px) rotate(-1deg) scale(1.02); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero__quadrant img {
+			animation: none;
+		}
 	}
 
 	.hero__eyebrow {
@@ -170,6 +290,43 @@ import { siteConfig } from '../../data/site.ts';
 
 	.hero__actions a:hover {
 		transform: translateY(-2px);
+	}
+
+	@media (max-width: 1199px) {
+		.hero__decorations {
+			--quadrant-size: 220px;
+		}
+	}
+
+	@media (max-width: 767px) {
+		.hero__decorations {
+			--quadrant-size: 140px;
+			--decor-gap: 0px;
+		}
+
+		.hero__quadrant {
+			border-radius: var(--radius-lg);
+		}
+
+		.hero__quadrant--green {
+			display: none;
+		}
+
+		.hero__quadrant:nth-child(1) {
+			transform: translate(-50%, -50%);
+		}
+
+		.hero__quadrant:nth-child(2) {
+			transform: translate(50%, -50%);
+		}
+
+		.hero__quadrant:nth-child(3) {
+			transform: translate(-50%, 50%);
+		}
+
+		.hero__quadrant img {
+			animation: none;
+		}
 	}
 
 	@media (min-width: 768px) {
