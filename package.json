@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:deploy": "astro build && rm -rf dist-final && mkdir -p dist-final/devfest2026 && cp -r dist/* dist-final/devfest2026/ && rm -rf dist && mv dist-final dist",
     "preview": "astro preview",
     "astro": "astro"
   },
