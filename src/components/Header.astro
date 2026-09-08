@@ -1,12 +1,14 @@
 ---
 import Container from './ui/Container.astro';
 import { siteConfig, navigation } from '../data/site.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <header class="site-header">
   <Container as="div">
-    <a href="/" class="site-header__brand">
-      <img src="/images/logo.svg" alt={`${siteConfig.name} logo`} />
+    <a href={`${base}/`} class="site-header__brand">
+      <img src={`${base}/images/logo.svg`} alt={`${siteConfig.name} logo`} />
       <span>{siteConfig.date}</span>
     </a>
 
@@ -36,3 +38,50 @@ import { siteConfig, navigation } from '../data/site.ts';
 
   </Container>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.site-header__nav a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+
+    if (navLinks.length === 0 || sections.length === 0) return;
+
+    const updateActiveLink = (activeHref) => {
+      navLinks.forEach((link) => {
+        if (link.getAttribute('href') === activeHref) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            updateActiveLink(`#${entry.target.id}`);
+          }
+        });
+      },
+      {
+        rootMargin: '-45% 0px -45% 0px',
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    // Activar "Inicio" cuando estamos cerca del top de la página
+    const homeLink = Array.from(navLinks).find((link) => link.getAttribute('href') === '#');
+    if (homeLink) {
+      const handleScroll = () => {
+        if (window.scrollY < 100) {
+          updateActiveLink('#');
+        }
+      };
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    }
+  });
+</script>

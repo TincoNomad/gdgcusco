@@ -1,0 +1,32 @@
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-8);
+  }
+
+  .site-footer__top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .site-footer__left {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header {
+    padding-block: var(--space-6);
+  }
+
+  .site-header__menu-toggle {
+    display: none;
+  }
+
+  .site-header__nav,
+  .site-header__conduct {
+    display: block;
+  }
+}

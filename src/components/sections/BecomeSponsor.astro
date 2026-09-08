@@ -1,6 +1,8 @@
 ---
 import Container from '../ui/Container.astro';
 import { sponsorTiers, sponsorBenefits } from '../../data/site.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section id="become-sponsor" class="become-sponsor" aria-labelledby="become-sponsor-title">
@@ -28,7 +30,7 @@ import { sponsorTiers, sponsorBenefits } from '../../data/site.ts';
         </div>
 
         <div class="become-sponsor__image" aria-hidden="true">
-          <img src="/images/sponsors.webp" alt="" />
+          <img src={`${base}/images/sponsors.webp`} alt="" />
         </div>
       </div>
 

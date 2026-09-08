@@ -1,6 +1,8 @@
 ---
 import Container from '../ui/Container.astro';
 import { siteConfig } from '../../data/site.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -38,16 +40,16 @@ import { siteConfig } from '../../data/site.ts';
 
   <div class="hero__decorations" aria-hidden="true">
     <div class="hero__quadrant">
-      <img src="/images/amarillo.webp" alt="" loading="lazy" />
+      <img src={`${base}/images/amarillo.webp`} alt="" loading="lazy" />
     </div>
     <div class="hero__quadrant">
-      <img src="/images/azul.webp" alt="" loading="lazy" />
+      <img src={`${base}/images/azul.webp`} alt="" loading="lazy" />
     </div>
     <div class="hero__quadrant">
-      <img src="/images/rojo.webp" alt="" loading="lazy" />
+      <img src={`${base}/images/rojo.webp`} alt="" loading="lazy" />
     </div>
     <div class="hero__quadrant hero__quadrant--green">
-      <img src="/images/verde.webp" alt="" loading="lazy" />
+      <img src={`${base}/images/verde.webp`} alt="" loading="lazy" />
     </div>
   </div>
 
@@ -96,8 +98,8 @@ import { siteConfig } from '../../data/site.ts';
 	}
 
 	.hero__decorations {
-		--quadrant-size: 360px;
-		--quadrant-padding: 30px;
+		--quadrant-size: clamp(16rem, 18vw, 18rem);
+		--quadrant-padding: clamp(1rem, 2vw, 1.875rem);
 		--decor-gap-y: clamp(50px, 7vh, 90px);
 		--decor-gap-x: clamp(80px, 13vw, 290px);
 
@@ -334,8 +336,6 @@ import { siteConfig } from '../../data/site.ts';
 
 	@media (max-width: 1199px) {
 		.hero__decorations {
-			--quadrant-size: 280px;
-			--quadrant-padding: 20px;
 			--decor-gap-x: 80px;
 		}
 	}

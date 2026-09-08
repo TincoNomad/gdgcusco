@@ -2,6 +2,8 @@
 import Container from './ui/Container.astro';
 import SocialLinks from './ui/SocialLinks.astro';
 import { siteConfig, footerEditions } from '../data/site.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <footer class="site-footer">
@@ -21,7 +23,7 @@ import { siteConfig, footerEditions } from '../data/site.ts';
         </nav>
 
         <div class="site-footer__brand">
-          <img src="/images/logo.svg" alt={`${siteConfig.name} logo`} width="40" height="40" />
+          <img src={`${base}/images/logo.svg`} alt={`${siteConfig.name} logo`} width="40" height="40" />
         </div>
       </div>
 
