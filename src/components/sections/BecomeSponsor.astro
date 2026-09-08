@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         {
           sponsorTiers.map((tier) => (
             <li class:list={['become-sponsor__tier', { 'become-sponsor__tier--featured': tier.featured }]}>
-              <img src={tier.icon} alt="" class="become-sponsor__tier-icon" loading="lazy" />
+              <img src={`${base}${tier.icon}`} alt="" class="become-sponsor__tier-icon" loading="lazy" />
               <span class="become-sponsor__tier-name">{tier.name}</span>
             </li>
           ))
