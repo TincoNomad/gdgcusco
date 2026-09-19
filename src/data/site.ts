@@ -19,6 +19,8 @@ export const siteConfig: SiteConfig = {
   },
   description:
     "Un punto de encuentro para personas que aprenden, comparten y construyen tecnología desde Cusco para el mundo.",
+  ticketUrl:
+    "https://gdg.community.dev/events/details/google-gdg-cusco-presents-devfest-cusco-2026-kickoff/",
   social: {
     instagram: "https://www.instagram.com/caribedev/",
     twitch: "https://www.twitch.tv/caribedev",
@@ -61,44 +63,24 @@ export const sponsorBenefits: string[] = [
 
 export const allyLogos: Ally[] = [
   {
-    name: "Fomo",
-    href: "https://holafomo.com/",
-    src: "/images/allies/fomo-logo.webp",
+    name: "Universidad Andina del Cusco",
+    href: "https://www.uandina.edu.pe/",
+    src: "/images/allies/andina.webp",
   },
   {
-    name: "Miguel Teheran",
-    href: "https://mteheran.dev/",
-    src: "/images/allies/miguel-teheran.svg",
+    name: "CITE textil camélidos Cusco",
+    href: "https://www.itp.gob.pe/",
+    src: "/images/allies/cite.webp",
   },
   {
-    name: "JetBrains",
-    href: "https://www.jetbrains.com/",
-    src: "/images/allies/jetbrains-logo.webp",
+    name: "ITP red CITE",
+    href: "https://www.itp.gob.pe/",
+    src: "/images/allies/itp.webp",
   },
   {
-    name: "4Geeks",
-    href: "https://www.4geeks.com/",
-    src: "/images/allies/4geeks.svg",
-  },
-  {
-    name: "BaqJUG",
-    href: "https://www.instagram.com/barranquillajug/",
-    src: "/images/allies/baqjug.png",
-  },
-  {
-    name: "Dappsco",
-    href: "https://dappsco.io/",
-    src: "/images/allies/dappsco.svg",
-  },
-  {
-    name: "QuillaBlocks",
-    href: "https://www.quillablocks.org/",
-    src: "/images/allies/quilla-blocks.png",
-  },
-  {
-    name: "RubyBaq",
-    href: "https://www.instagram.com/rubybarranquilla",
-    src: "/images/allies/rubybaq.svg",
+    name: "Ministerio de la Producción",
+    href: "https://www.gob.pe/produce",
+    src: "/images/allies/min.webp",
   },
 ];
 

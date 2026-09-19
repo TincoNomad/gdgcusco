@@ -9,6 +9,7 @@ export interface SiteConfig {
     fullAddress: string;
   };
   description: string;
+  ticketUrl: string;
   social: {
     instagram: string;
     twitch: string;

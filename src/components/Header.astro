@@ -34,13 +34,37 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           ))
         }
       </ul>
+      <a href={siteConfig.ticketUrl} target="_blank" rel="noopener" class="site-header__cta button">
+        Obtener mi entrada
+      </a>
     </nav>
-
   </Container>
 </header>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.site-header__menu-toggle');
+    const navMenu = document.getElementById('site-header-menu');
+
+    if (menuToggle && navMenu) {
+      const setMenuOpen = (open) => {
+        navMenu.classList.toggle('is-open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuToggle.setAttribute(
+          'aria-label',
+          open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+        );
+      };
+
+      menuToggle.addEventListener('click', () => {
+        setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      navMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenuOpen(false));
+      });
+    }
+
     const navLinks = document.querySelectorAll('.site-header__nav a[href^="#"]');
     const sections = document.querySelectorAll('section[id]');
 
