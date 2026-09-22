@@ -38,6 +38,12 @@ export interface SponsorTier {
   icon: string;
 }
 
+export interface Sponsor {
+  name: string;
+  href: string;
+  src: string;
+}
+
 export interface Ally {
   name: string;
   href: string;

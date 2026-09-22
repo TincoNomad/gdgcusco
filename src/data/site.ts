@@ -3,6 +3,7 @@ import type {
   NavItem,
   Stat,
   SponsorTier,
+  Sponsor,
   Ally,
   Edition,
 } from "../types";
@@ -51,6 +52,14 @@ export const sponsorTiers: SponsorTier[] = [
   { id: "plata", name: "Plata", icon: "/images/rojo.webp" },
   { id: "oro", name: "Oro", featured: true, icon: "/images/amarillo.webp" },
   { id: "diamante", name: "Diamante", icon: "/images/verde.webp" },
+];
+
+export const sponsors: Sponsor[] = [
+  {
+    name: "Platzi",
+    href: "https://platzi.com",
+    src: "/images/sponsors/platzi.webp",
+  },
 ];
 
 export const sponsorBenefits: string[] = [

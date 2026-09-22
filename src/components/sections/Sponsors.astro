@@ -1,31 +1,31 @@
 ---
 import Container from '../ui/Container.astro';
+import { sponsors } from '../../data/site.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <section id="sponsors" class="sponsors" aria-labelledby="sponsors-title">
   <Container as="div">
     <h2 id="sponsors-title" class="sponsors__title">Sponsors</h2>
 
-    <div class="sponsors__tier">
-      <h3>Diamante</h3>
-      <a href="#" class="sponsor-logo">
-        <img src="https://placehold.co/300x80/ffffff/4285f4?text=Tu+Logo" alt="Sponsor Diamante" width="160" height="40" />
-      </a>
-    </div>
-
-    <div class="sponsors__tier">
-      <h3>Oro</h3>
-      <a href="#" class="sponsor-logo">
-        <img src="https://placehold.co/280x80/ffffff/4285f4?text=Tu+Logo" alt="Sponsor Oro" width="140" height="40" />
-      </a>
-    </div>
-
-    <div class="sponsors__tier">
-      <h3>Plata</h3>
-      <a href="#" class="sponsor-logo">
-        <img src="https://placehold.co/260x80/ffffff/4285f4?text=Tu+Logo" alt="Sponsor Plata" width="130" height="40" />
-      </a>
-    </div>
+    <ul class="sponsors__grid" role="list">
+      {
+        sponsors.map((sponsor) => (
+          <li role="listitem">
+            <a
+              href={sponsor.href}
+              target="_blank"
+              rel="noopener"
+              title={sponsor.name}
+              class="sponsor-logo"
+            >
+              <img src={`${base}${sponsor.src}`} alt={`Logo de ${sponsor.name}`} loading="lazy" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
   </Container>
 </section>
 
@@ -43,26 +43,31 @@ import Container from '../ui/Container.astro';
 		color: var(--color-text);
 	}
 
-	.sponsors__tier {
+	.sponsors__grid {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: var(--space-4);
-		margin-bottom: var(--space-10);
+		list-style: none;
+		padding: 0;
+		margin: 0;
 	}
 
-	.sponsors__tier h3 {
-		font-size: 1.25rem;
-		font-weight: 600;
-		margin: 0;
-		color: var(--color-text-secondary);
+	.sponsors__grid li {
+		flex: 0 1 30%;
+		min-width: 10rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.sponsor-logo {
+		width: 100%;
+		height: 6rem;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: var(--space-6) var(--space-10);
+		padding: var(--space-3) var(--space-4);
 		background: var(--color-bg);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg);
@@ -78,7 +83,8 @@ import Container from '../ui/Container.astro';
 	}
 
 	.sponsor-logo img {
-		max-height: 3rem;
-		width: auto;
+		max-width: 100%;
+		height: 4rem;
+		object-fit: contain;
 	}
 </style>
