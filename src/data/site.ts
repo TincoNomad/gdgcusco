@@ -6,6 +6,7 @@ import type {
   Sponsor,
   Ally,
   Edition,
+  Speaker,
 } from "../types";
 
 export const siteConfig: SiteConfig = {
@@ -43,9 +44,9 @@ export const navigation: NavItem[] = [
 ];
 
 export const stats: Stat[] = [
-  { value: "2", label: "días de conferencias y experiencias" },
+  { value: "6", label: "horas de conferencias y experiencias" },
   { value: "8+", label: "speakers nacionales e internacionales" },
-  { value: "6+", label: "comunidades tech participantes" },
+  { value: "300+", label: "participantes" },
 ];
 
 export const sponsorTiers: SponsorTier[] = [
@@ -90,6 +91,33 @@ export const allyLogos: Ally[] = [
     name: "Ministerio de la Producción",
     href: "https://www.gob.pe/produce",
     src: "/images/allies/min.webp",
+  },
+];
+
+export const speakers: Speaker[] = [
+  {
+    name: "Carlos Alarcón",
+    role: "CTO & Co-founder at Quix",
+    photo: "/images/speakers/alarcon.webp",
+    linkedin: "https://www.linkedin.com/in/alarcon7a/",
+  },
+  {
+    name: "Adrián Catalán",
+    role: "AI & Cloud Strategy Consultant",
+    photo: "/images/speakers/catalan.webp",
+    linkedin: "https://www.linkedin.com/in/adriancatalan/",
+  },
+  {
+    name: "Luis Pérez",
+    role: "Senior Frontend Developer",
+    photo: "/images/speakers/luis_eduardo.webp",
+    linkedin: "https://www.linkedin.com/in/luiseduardoperezpacherrez/",
+  },
+  {
+    name: "Vanessa Aristizábal",
+    role: "Senior Software Engineer",
+    photo: "/images/speakers/vanesa.webp",
+    linkedin: "https://www.linkedin.com/in/vanessa-marely-aristizabal-angel/",
   },
 ];
 

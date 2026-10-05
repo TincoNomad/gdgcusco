@@ -64,7 +64,8 @@ export interface AgendaItem {
 
 export interface Speaker {
   name: string;
-  role: string;
+  role?: string;
   photo: string;
   country?: string;
+  linkedin?: string;
 }
