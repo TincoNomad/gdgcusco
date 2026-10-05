@@ -119,6 +119,12 @@ export const speakers: Speaker[] = [
     photo: "/images/speakers/vanesa.webp",
     linkedin: "https://www.linkedin.com/in/vanessa-marely-aristizabal-angel/",
   },
+  {
+    name: "Ximena Cruz",
+    role: "Community Manager",
+    photo: "/images/speakers/ximena.webp",
+    linkedin: "https://www.linkedin.com/in/helenismoo/",
+  },
 ];
 
 export const footerEditions: Edition[] = [
