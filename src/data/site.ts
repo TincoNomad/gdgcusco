@@ -38,8 +38,8 @@ export const siteConfig: SiteConfig = {
 export const navigation: NavItem[] = [
   { label: "Inicio", href: "#" },
   { label: "Speakers", href: "#speakers" },
-  { label: "Sponsors", href: "#become-sponsor" },
   { label: "Agenda", href: "#agenda" },
+  { label: "Sponsors", href: "#become-sponsor" },
   { label: "Aliados", href: "#aliados" },
 ];
 
