@@ -9,20 +9,26 @@ const agendaColors = [
 ];
 
 const dayOne = [
-  { time: '9:00 – 9:15', title: 'Bienvenida', type: 'session' },
-  { time: '9:15 – 9:45', title: 'Charla 1', type: 'talk' },
-  { time: '9:45 – 10:15', title: 'Charla 2', type: 'talk' },
-  { time: '10:15 – 10:45', title: 'Charla 3', type: 'talk' },
-  { time: '10:15 – 10:45', title: 'Taller 1', type: 'talk', bgWhite: true },
-  { time: '10:45 – 11:15', title: 'Break', type: 'break' },
-  { time: '11:15 – 11:45', title: 'Charla 4', type: 'talk' },
-  { time: '11:45 – 12:15', title: 'Charla 5', type: 'talk' },
-  { time: '12:15 – 1:30', title: 'Almuerzo', type: 'break' },
-  { time: '1:30 – 2:15', title: 'Charla 6', type: 'talk' },
-  { time: '2:15 – 2:45', title: 'Charla 7', type: 'talk' },
-  { time: '2:45 – 3:30', title: 'Conversatorio', type: 'session' },
-  { time: '3:30 – 4:00', title: 'Charla 8', type: 'talk' },
-  { time: '4:00 – 4:15', title: 'Cierre', type: 'session' },
+  { time: '9:00 – 9:15', title: 'Inauguración del evento', type: 'session' },
+  { time: '9:15 – 9:45', title: 'WebMCP in action', speaker: 'Vanessa Aristizábal', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '9:45 – 10:15', title: 'Agentic Engineering en Flutter', speaker: 'Luis Enrique Pinedo', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '10:15 – 10:45', title: 'TBD', speaker: 'Bruno Aybar', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '10:45 – 11:15', title: 'Agentic Development in practice', speaker: 'Adrián Catalán', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '10:45 – 11:15', title: '¿Puede Hugging Face manipular a Antigravity?', speaker: 'David Alonso Quispe', type: 'talk', kind: 'Taller', place: 'Aula' },
+  { time: '11:15 – 11:30', title: 'Break', type: 'break' },
+  { time: '11:30 – 12:00', title: 'Impulsa tu carrera con IA y comunidad', speaker: 'Ximena Cruz', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '11:30 – 12:00', title: 'Más allá del código: diseño conversacional para agentes de IA', speaker: 'Luis Ángel Quispe Navarro', type: 'talk', kind: 'Taller', place: 'Aula' },
+  { time: '12:00 – 13:00', title: 'Software en un mundo de IA?', speaker: 'Andrés Chávez', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '13:00 – 14:30', title: 'Almuerzo', type: 'break' },
+  { time: '14:30 – 15:00', title: '¡Dale a tu cuerpo alegría ♫ … robot?! — AGY en el mundo físico', speaker: 'Hansy', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '14:30 – 15:00', title: 'De Cusco a la Nube de Datos: Un salto hacia nuevas oportunidades', speaker: 'Ian Logan Will Quispe Ventura', type: 'talk', kind: 'Taller', place: 'Aula' },
+  { time: '15:00 – 15:30', title: 'Building and Deploying with Google ADK and Gemini', speaker: 'Carlos Alarcón', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '15:30 – 16:00', title: 'Como construir tu software factory con agente de IA', speaker: 'Jonathan Nolasco', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '16:00 – 16:15', title: 'Break', type: 'break' },
+  { time: '16:15 – 16:45', title: 'Data & Analytics en la era multi-cloud: SQL Server y Google BigQuery', speaker: 'Renzo Roca', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '16:45 – 17:15', title: 'La ilusión de velocidad.', speaker: 'Noe Branagan', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '17:15 – 17:45', title: 'Conversatorio', type: 'session' },
+  { time: '17:45 – 18:15', title: 'Cierre', type: 'session' },
 ];
 
 const dayTwo = [
@@ -37,7 +43,7 @@ const dayTwo = [
 // Agrupa items consecutivos que comparten horario en una sola fila.
 // Fila con más de un item = sesiones paralelas a la misma hora.
 const rows = dayOne.reduce((acc, item, index) => {
-  const colorIndex = index % agendaColors.length;
+  const colorIndex = item.colorIndex ?? index % agendaColors.length;
   const last = acc[acc.length - 1];
   if (last && last[0].time === item.time) {
     last.push({ ...item, colorIndex });
@@ -70,8 +76,12 @@ const rows = dayOne.reduce((acc, item, index) => {
             row.length > 1 ? (
               <li class="agenda__row agenda__row--split">
                 {row.map((item) => (
-                  <div class={`agenda__item agenda__item--${item.type} agenda__item--color-${item.colorIndex}${item.bgWhite ? ' agenda__item--white' : ''}`}>
-                    <time>{item.time}</time>
+                  <div class={`agenda__item agenda__item--${item.type} agenda__item--color-${item.colorIndex}`}>
+                    {item.kind && <span class="agenda__kind">{item.kind}</span>}
+                    <div class="agenda__meta">
+                      <time>{item.time}</time>
+                      {item.place && <span class="agenda__place">{item.place}</span>}
+                    </div>
                     <div>
                       <h3>{item.title}</h3>
                       {item.speaker && <p>{item.speaker}</p>}
@@ -80,8 +90,12 @@ const rows = dayOne.reduce((acc, item, index) => {
                 ))}
               </li>
             ) : (
-              <li class={`agenda__item agenda__item--${row[0].type} agenda__item--color-${row[0].colorIndex}${row[0].bgWhite ? ' agenda__item--white' : ''}`}>
-                <time>{row[0].time}</time>
+              <li class={`agenda__item agenda__item--${row[0].type} agenda__item--color-${row[0].colorIndex}`}>
+                {row[0].kind && <span class="agenda__kind">{row[0].kind}</span>}
+                <div class="agenda__meta">
+                  <time>{row[0].time}</time>
+                  {row[0].place && <span class="agenda__place">{row[0].place}</span>}
+                </div>
                 <div>
                   <h3>{row[0].title}</h3>
                   {row[0].speaker && <p>{row[0].speaker}</p>}
@@ -186,7 +200,9 @@ const rows = dayOne.reduce((acc, item, index) => {
 	.agenda__item {
 		position: relative;
 		display: grid;
-		grid-template-columns: 5rem 1fr;
+		/* 6.5rem en vez de 5rem: "10:15 – 10:45" mide ~91px y con
+		   5rem se partía en dos líneas (era lo que se veía "en columna") */
+		grid-template-columns: 6.5rem 1fr;
 		gap: var(--space-4);
 		padding: var(--space-4) var(--space-5);
 		margin-left: 2rem;
@@ -209,6 +225,16 @@ const rows = dayOne.reduce((acc, item, index) => {
 	.agenda__item time {
 		font-weight: 700;
 		font-size: 0.875rem;
+		white-space: nowrap;
+	}
+
+	/* Hora + badge de sala: viven en la primera columna del grid.
+	   El badge queda pegado debajo del horario. */
+	.agenda__meta {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--space-1);
 	}
 
 	.agenda__item h3 {
@@ -276,9 +302,31 @@ const rows = dayOne.reduce((acc, item, index) => {
 		color: #FFCC01;
 	}
 
-	.agenda__item--white {
-		background: #ffffff;
-		border-color: var(--color-border);
+	/* Línea superior con el tipo de sesión (Charla / Taller).
+	   Abarga las dos columnas del grid y se centra. */
+	.agenda__kind {
+		grid-column: 1 / -1;
+		text-align: center;
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-text-secondary);
+	}
+
+	/* Badge de sala (Auditorio / Aula) — se muestra solo en los items
+	   que traen `place` en los datos. */
+	.agenda__place {
+		display: inline-block;
+		padding: 2px 8px;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-full);
+		background: var(--color-surface);
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--color-text-secondary);
 	}
 
 	/* Fila con sesiones paralelas: wrapper sin estilos visuales,
@@ -290,21 +338,9 @@ const rows = dayOne.reduce((acc, item, index) => {
 		gap: var(--space-3);
 	}
 
-	/* Un solo punto sobre la línea central para toda la fila */
+	/* Mobile: los boxes apilados conservan su propio punto, como
+	   cualquier otro item. El punto compartido es solo de desktop. */
 	.agenda__row--split::after {
-		content: '';
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-		width: 0.75rem;
-		height: 0.75rem;
-		border-radius: var(--radius-full);
-		border: 2px solid var(--color-surface);
-		background: var(--color-primary);
-	}
-
-	.agenda__row--split > .agenda__item::before {
 		display: none;
 	}
 
@@ -314,6 +350,13 @@ const rows = dayOne.reduce((acc, item, index) => {
 		text-align: center;
 		margin-left: 0;
 		grid-template-columns: 1fr;
+	}
+
+	/* Los breaks no traen badge, pero `.agenda__meta` fija
+	   align-items: flex-start y rompería el centrado del horario. */
+	.agenda__item--break .agenda__meta,
+	.agenda__item--session .agenda__meta {
+		align-items: center;
 	}
 
 	.agenda__item--break::before,
@@ -363,8 +406,9 @@ const rows = dayOne.reduce((acc, item, index) => {
 			margin-inline: auto;
 		}
 
-		/* EXPLICIMENTO: rompe el width: calc(50% - ...) para que
-		   cada box tome su ancho natural y queden enfrentados. */
+		/* La fila ocupa 100% y cada box usa el mismo largo que un item
+		   normal: calc(50% - space-6). space-between mete el sobrante
+		   en el hueco central, que queda centrado sobre la línea. */
 		.agenda__row--split {
 			flex-direction: row;
 			justify-content: space-between;
@@ -374,16 +418,31 @@ const rows = dayOne.reduce((acc, item, index) => {
 		}
 
 		.agenda__row--split > .agenda__item {
-			width: auto;
+			width: calc(50% - var(--space-6));
 			flex: 0 1 auto;
 			margin-left: 0;
 			margin-right: 0;
 		}
 
-		/* El wrapper ocupa toda la columna, así que el ::after cae
-		   exactamente sobre la línea central de .agenda__list::before */
+		/* Un solo punto de timeline centrado en la fila: los dos
+		   puntos internos se ocultan porque caerían en el mismo
+		   sitio (mismo left: 50%) y con alturas distintas. */
 		.agenda__row--split::after {
+			display: block;
+			content: '';
+			position: absolute;
 			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 0.75rem;
+			height: 0.75rem;
+			border-radius: var(--radius-full);
+			border: 2px solid var(--color-surface);
+			background: var(--color-primary);
+		}
+
+		.agenda__row--split > .agenda__item::before {
+			display: none;
 		}
 	}
 </style>
