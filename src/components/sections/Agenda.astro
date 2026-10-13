@@ -11,16 +11,17 @@ const agendaColors = [
 const dayOne = [
   { time: '9:00 – 9:15', title: 'Bienvenida', type: 'session' },
   { time: '9:15 – 9:45', title: 'Charla 1', type: 'talk' },
-  { time: '9:45 – 10:15', title: 'Charla 1', type: 'talk' },
-  { time: '10:15 – 10:45', title: 'Charla 1', type: 'talk' },
+  { time: '9:45 – 10:15', title: 'Charla 2', type: 'talk' },
+  { time: '10:15 – 10:45', title: 'Charla 3', type: 'talk' },
+  { time: '10:15 – 10:45', title: 'Taller 1', type: 'talk', bgWhite: true },
   { time: '10:45 – 11:15', title: 'Break', type: 'break' },
-  { time: '11:15 – 11:45', title: 'Charla 1', type: 'talk' },
-  { time: '11:45 – 12:15', title: 'Charla 1', type: 'talk' },
+  { time: '11:15 – 11:45', title: 'Charla 4', type: 'talk' },
+  { time: '11:45 – 12:15', title: 'Charla 5', type: 'talk' },
   { time: '12:15 – 1:30', title: 'Almuerzo', type: 'break' },
-  { time: '1:30 – 2:15', title: 'Charla 1', type: 'talk' },
-  { time: '2:15 – 2:45', title: 'Charla 1', type: 'talk' },
+  { time: '1:30 – 2:15', title: 'Charla 6', type: 'talk' },
+  { time: '2:15 – 2:45', title: 'Charla 7', type: 'talk' },
   { time: '2:45 – 3:30', title: 'Conversatorio', type: 'session' },
-  { time: '3:30 – 4:00', title: 'Charla 1', type: 'talk' },
+  { time: '3:30 – 4:00', title: 'Charla 8', type: 'talk' },
   { time: '4:00 – 4:15', title: 'Cierre', type: 'session' },
 ];
 
@@ -32,6 +33,19 @@ const dayTwo = [
   { time: '12:00 – 13:30', title: 'Almuerzo', type: 'break' },
   { time: '17:25', title: 'Clausura', type: 'session' },
 ];
+
+// Agrupa items consecutivos que comparten horario en una sola fila.
+// Fila con más de un item = sesiones paralelas a la misma hora.
+const rows = dayOne.reduce((acc, item, index) => {
+  const colorIndex = index % agendaColors.length;
+  const last = acc[acc.length - 1];
+  if (last && last[0].time === item.time) {
+    last.push({ ...item, colorIndex });
+  } else {
+    acc.push([{ ...item, colorIndex }]);
+  }
+  return acc;
+}, []);
 ---
 
 <section id="agenda" class="agenda" aria-labelledby="agenda-title">
@@ -52,15 +66,29 @@ const dayTwo = [
     <div id="panel-day-1" role="tabpanel" aria-labelledby="tab-day-1" class="agenda__panel">
       <ol class="agenda__list">
         {
-          dayOne.map((item, index) => (
-            <li class={`agenda__item agenda__item--${item.type} agenda__item--color-${index % agendaColors.length}`}>
-              <time>{item.time}</time>
-              <div>
-                <h3>{item.title}</h3>
-                {item.speaker && <p>{item.speaker}</p>}
-              </div>
-            </li>
-          ))
+          rows.map((row) =>
+            row.length > 1 ? (
+              <li class="agenda__row agenda__row--split">
+                {row.map((item) => (
+                  <div class={`agenda__item agenda__item--${item.type} agenda__item--color-${item.colorIndex}${item.bgWhite ? ' agenda__item--white' : ''}`}>
+                    <time>{item.time}</time>
+                    <div>
+                      <h3>{item.title}</h3>
+                      {item.speaker && <p>{item.speaker}</p>}
+                    </div>
+                  </div>
+                ))}
+              </li>
+            ) : (
+              <li class={`agenda__item agenda__item--${row[0].type} agenda__item--color-${row[0].colorIndex}${row[0].bgWhite ? ' agenda__item--white' : ''}`}>
+                <time>{row[0].time}</time>
+                <div>
+                  <h3>{row[0].title}</h3>
+                  {row[0].speaker && <p>{row[0].speaker}</p>}
+                </div>
+              </li>
+            )
+          )
         }
       </ol>
     </div>
@@ -248,6 +276,38 @@ const dayTwo = [
 		color: #FFCC01;
 	}
 
+	.agenda__item--white {
+		background: #ffffff;
+		border-color: var(--color-border);
+	}
+
+	/* Fila con sesiones paralelas: wrapper sin estilos visuales,
+	   los boxes adentro sí conservan fondo/borde/redondeado. */
+	.agenda__row--split {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-3);
+	}
+
+	/* Un solo punto sobre la línea central para toda la fila */
+	.agenda__row--split::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: var(--radius-full);
+		border: 2px solid var(--color-surface);
+		background: var(--color-primary);
+	}
+
+	.agenda__row--split > .agenda__item::before {
+		display: none;
+	}
+
 	.agenda__item--break,
 	.agenda__item--session {
 		justify-content: center;
@@ -300,7 +360,30 @@ const dayTwo = [
 		.agenda__item--session {
 			width: 100%;
 			max-width: 30rem;
-			margin-inline: auto !important;
+			margin-inline: auto;
+		}
+
+		/* EXPLICIMENTO: rompe el width: calc(50% - ...) para que
+		   cada box tome su ancho natural y queden enfrentados. */
+		.agenda__row--split {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+			width: 100%;
+			gap: var(--space-4);
+		}
+
+		.agenda__row--split > .agenda__item {
+			width: auto;
+			flex: 0 1 auto;
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		/* El wrapper ocupa toda la columna, así que el ::after cae
+		   exactamente sobre la línea central de .agenda__list::before */
+		.agenda__row--split::after {
+			left: 50%;
 		}
 	}
 </style>
