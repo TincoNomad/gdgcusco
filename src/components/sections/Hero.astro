@@ -1,5 +1,6 @@
 ---
 import Container from '../ui/Container.astro';
+import EventInfo from './EventInfo.astro';
 import { siteConfig } from '../../data/site.ts';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -29,12 +30,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="hero__actions">
         <div class="hero__actions-row">
           <a href={siteConfig.ticketUrl} target="_blank" rel="noopener" class="hero__actions-primary">Obtener mi entrada</a>
-          <a href="#become-sponsor" class="hero__actions-secondary">Patrocinar</a>
-        </div>
-        <div class="hero__actions-row">
-          <a href="https://forms.gle/HdJMrSzBQYazRJiAA" target="blank" class="hero__actions-tertiary">Dar una charla</a>
         </div>
       </div>
+
+      <EventInfo embedded />
     </div>
   </Container>
 
@@ -279,9 +278,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: var(--space-3) var(--space-6);
+		padding: 0.9rem 1.8rem;
 		border-radius: var(--radius-full);
 		font-weight: 600;
+		font-size: 1.2rem;
 		border: 1px solid transparent;
 		transition: transform var(--duration-base) var(--ease-default),
 			background-color var(--duration-base) var(--ease-default),
