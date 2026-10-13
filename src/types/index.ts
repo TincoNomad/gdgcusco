@@ -1,6 +1,5 @@
 export interface SiteConfig {
   name: string;
-  tagline: string;
   date: string;
   location: {
     venue: string;
@@ -59,7 +58,7 @@ export interface AgendaItem {
   time: string;
   title: string;
   speaker?: string;
-  type: 'session' | 'talk' | 'break' | 'workshop';
+  type: "session" | "talk" | "break" | "workshop";
 }
 
 export interface Speaker {

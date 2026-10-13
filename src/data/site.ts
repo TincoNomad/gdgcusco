@@ -11,7 +11,6 @@ import type {
 
 export const siteConfig: SiteConfig = {
   name: "DevFest 2026",
-  tagline: "Conferencia de Comunidades Tech",
   date: "7 de Noviembre 2026",
   location: {
     venue: "Paraninfo Universitario",

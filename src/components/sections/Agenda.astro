@@ -14,14 +14,14 @@ const dayOne = [
   { time: '9:45 – 10:15', title: 'Agentic Engineering en Flutter', speaker: 'Luis Enrique Pinedo', type: 'talk', kind: 'Charla', place: 'Auditorio' },
   { time: '10:15 – 10:45', title: 'TBD', speaker: 'Bruno Aybar', type: 'talk', kind: 'Charla', place: 'Auditorio' },
   { time: '10:45 – 11:15', title: 'Agentic Development in practice', speaker: 'Adrián Catalán', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '10:45 – 11:15', title: '¿Puede Hugging Face manipular a Antigravity?', speaker: 'David Alonso Quispe', type: 'talk', kind: 'Taller', place: 'Aula' },
+  { time: '10:45 – 11:15', title: '¿Puede Hugging Face manipular a Antigravity?', speaker: 'David Alonso Quispe', type: 'talk', kind: 'Workshop', place: 'Aula' },
   { time: '11:15 – 11:30', title: 'Break', type: 'break' },
   { time: '11:30 – 12:00', title: 'Impulsa tu carrera con IA y comunidad', speaker: 'Ximena Cruz', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '11:30 – 12:00', title: 'Más allá del código: diseño conversacional para agentes de IA', speaker: 'Luis Ángel Quispe Navarro', type: 'talk', kind: 'Taller', place: 'Aula' },
+  { time: '11:30 – 12:00', title: 'Más allá del código: diseño conversacional para agentes de IA', speaker: 'Luis Ángel Quispe Navarro', type: 'talk', kind: 'Workshop', place: 'Aula' },
   { time: '12:00 – 13:00', title: 'Software en un mundo de IA?', speaker: 'Andrés Chávez', type: 'talk', kind: 'Charla', place: 'Auditorio' },
   { time: '13:00 – 14:30', title: 'Almuerzo', type: 'break' },
   { time: '14:30 – 15:00', title: '¡Dale a tu cuerpo alegría ♫ … robot?! — AGY en el mundo físico', speaker: 'Hansy', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '14:30 – 15:00', title: 'De Cusco a la Nube de Datos: Un salto hacia nuevas oportunidades', speaker: 'Ian Logan Will Quispe Ventura', type: 'talk', kind: 'Taller', place: 'Aula' },
+  { time: '14:30 – 15:00', title: 'De Cusco a la Nube de Datos: Un salto hacia nuevas oportunidades', speaker: 'Ian Logan Will Quispe Ventura', type: 'talk', kind: 'Workshop', place: 'Aula' },
   { time: '15:00 – 15:30', title: 'Building and Deploying with Google ADK and Gemini', speaker: 'Carlos Alarcón', type: 'talk', kind: 'Charla', place: 'Auditorio' },
   { time: '15:30 – 16:00', title: 'Como construir tu software factory con agente de IA', speaker: 'Jonathan Nolasco', type: 'talk', kind: 'Charla', place: 'Auditorio' },
   { time: '16:00 – 16:15', title: 'Break', type: 'break' },
@@ -302,7 +302,7 @@ const rows = dayOne.reduce((acc, item, index) => {
 		color: #FFCC01;
 	}
 
-	/* Línea superior con el tipo de sesión (Charla / Taller).
+	/* Línea superior con el tipo de sesión (Charla / Workshop).
 	   Abarga las dos columnas del grid y se centra. */
 	.agenda__kind {
 		grid-column: 1 / -1;

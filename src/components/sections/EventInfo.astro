@@ -87,10 +87,20 @@ const Tag = embedded ? 'div' : 'section';
 	}
 
 	.event-info__countdown {
-		display: flex;
-		gap: var(--space-4);
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--space-3);
 		justify-content: center;
-		flex-wrap: wrap;
+		width: 100%;
+		max-width: 24rem;
+	}
+
+	@media (min-width: 640px) {
+		.event-info__countdown {
+			display: flex;
+			gap: var(--space-4);
+			max-width: none;
+		}
 	}
 
 	.event-info__countdown > div {

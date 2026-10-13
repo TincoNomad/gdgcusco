@@ -137,6 +137,12 @@ section[id] {
   font-size: 0.875rem;
 }
 
+@media (max-width: 479.98px) {
+  .site-header__brand span {
+    display: none;
+  }
+}
+
 .site-header__menu-toggle {
   display: flex;
   flex-direction: column;
