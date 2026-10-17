@@ -118,12 +118,18 @@ export const speakers: Speaker[] = [
     photo: "/images/speakers/vanesa.webp",
     linkedin: "https://www.linkedin.com/in/vanessa-marely-aristizabal-angel/",
   },
+  { name: "Bruno Aybar", photo: "/images/speakers/bruno_aybar_foto.webp" },
   {
-    name: "Ximena Cruz",
-    role: "Community Manager",
-    photo: "/images/speakers/ximena.webp",
-    linkedin: "https://www.linkedin.com/in/helenismoo/",
+    name: "Luis Ángel Quispe Navarro",
+    photo: "/images/speakers/luis_angel_foto.webp",
   },
+  { name: "Andrés Chávez", photo: "/images/speakers/andres_chavez_foto.webp" },
+  {
+    name: "Jonathan Nolasco",
+    photo: "/images/speakers/jonathan_profile_photo.webp",
+  },
+  { name: "Renzo Roca", photo: "/images/speakers/renzo_roca_foto.webp" },
+  { name: "Noe Branagan", photo: "/images/speakers/noe_branagan_foto.webp" },
 ];
 
 export const footerEditions: Edition[] = [

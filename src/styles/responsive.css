@@ -21,6 +21,11 @@
 }
 
 @media (min-width: 1024px) {
+  :root {
+    /* padding-block 1.5; el CTA (48.4px) es más alto que el logo: 3 + 0.125 + 1.5 + 3.025 */
+    --header-height: 7.7rem;
+  }
+
   .site-header {
     padding-block: var(--space-6);
   }
