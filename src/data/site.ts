@@ -20,8 +20,7 @@ export const siteConfig: SiteConfig = {
   },
   description:
     "Un punto de encuentro para personas que aprenden, comparten y construyen tecnología desde Cusco para el mundo.",
-  ticketUrl:
-    "https://gdg.community.dev/events/details/google-gdg-cusco-presents-devfest-cusco-2026-kickoff/",
+  ticketUrl: "https://luma.com/msj5ywnj",
   social: {
     instagram: "https://www.instagram.com/caribedev/",
     twitch: "https://www.twitch.tv/caribedev",
@@ -44,7 +43,7 @@ export const navigation: NavItem[] = [
 
 export const stats: Stat[] = [
   { value: "6", label: "horas de conferencias y experiencias" },
-  { value: "8+", label: "speakers nacionales e internacionales" },
+  { value: "10+", label: "speakers nacionales e internacionales" },
   { value: "300+", label: "participantes" },
 ];
 
@@ -130,6 +129,16 @@ export const speakers: Speaker[] = [
   },
   { name: "Renzo Roca", photo: "/images/speakers/renzo_roca_foto.webp" },
   { name: "Noe Branagan", photo: "/images/speakers/noe_branagan_foto.webp" },
+  { name: "David Alonso Quispe", photo: "/images/speakers/david_alonso_foto.webp" },
+  { name: "Hansy Schmitt", photo: "/images/speakers/hansy_schmitt_foto.webp" },
+  {
+    name: "Ian Logan Will Quispe Ventura",
+    photo: "/images/speakers/ian_quispe.webp",
+  },
+  {
+    name: "Luis Enrique Pinedo",
+    photo: "/images/speakers/luis_enrique_pinedo.webp",
+  },
 ];
 
 export const footerEditions: Edition[] = [
