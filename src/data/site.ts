@@ -95,7 +95,7 @@ export const allyLogos: Ally[] = [
 export const speakers: Speaker[] = [
   {
     name: "Carlos Alarcón",
-    role: "CTO & Co-founder at Quix",
+    role: "CTO & Co-founder",
     photo: "/images/speakers/alarcon.webp",
     linkedin: "https://www.linkedin.com/in/alarcon7a/",
   },
@@ -117,27 +117,65 @@ export const speakers: Speaker[] = [
     photo: "/images/speakers/vanesa.webp",
     linkedin: "https://www.linkedin.com/in/vanessa-marely-aristizabal-angel/",
   },
-  { name: "Bruno Aybar", photo: "/images/speakers/bruno_aybar_foto.webp" },
+  {
+    name: "Bruno Aybar",
+    role: "Software Engineer",
+    photo: "/images/speakers/bruno_aybar_foto.webp",
+    linkedin: "https://www.linkedin.com/in/bruno-aybar/",
+  },
   {
     name: "Luis Ángel Quispe Navarro",
+    role: "UX Conversational Designer",
     photo: "/images/speakers/luis_angel_foto.webp",
+    linkedin: "https://www.linkedin.com/in/luis-angel-quispe/",
   },
-  { name: "Andrés Chávez", photo: "/images/speakers/andres_chavez_foto.webp" },
+  {
+    name: "Andrés Chávez",
+    role: "Mobile Architect",
+    photo: "/images/speakers/andres_chavez_foto.webp",
+    linkedin: "https://www.linkedin.com/in/goandreus/",
+  },
   {
     name: "Jonathan Nolasco",
+    role: "AI Engineer",
     photo: "/images/speakers/jonathan_profile_photo.webp",
+    linkedin: "https://www.linkedin.com/in/jnolascob/",
   },
-  { name: "Renzo Roca", photo: "/images/speakers/renzo_roca_foto.webp" },
-  { name: "Noe Branagan", photo: "/images/speakers/noe_branagan_foto.webp" },
-  { name: "David Alonso Quispe", photo: "/images/speakers/david_alonso_foto.webp" },
-  { name: "Hansy Schmitt", photo: "/images/speakers/hansy_schmitt_foto.webp" },
+  {
+    name: "Renzo Roca",
+    role: "Data Steward",
+    photo: "/images/speakers/renzo_roca_foto.webp",
+    linkedin: "https://www.linkedin.com/in/rocarenzo/",
+  },
+  {
+    name: "Noe Branagan",
+    role: "3x CTO",
+    photo: "/images/speakers/noe_branagan_foto.webp",
+    linkedin: "https://www.linkedin.com/in/noebranagan/",
+  },
+  {
+    name: "David Alonso Quispe",
+    role: "Systems Engineer",
+    photo: "/images/speakers/david_alonso_foto.webp",
+    linkedin: "https://www.linkedin.com/in/davidquicast/",
+  },
+  {
+    name: "Hansy Schmitt",
+    role: "Fullstack Mobile Engineer",
+    photo: "/images/speakers/hansy_schmitt_foto.webp",
+    linkedin: "https://www.linkedin.com/in/hansy-schmitt-a152329/",
+  },
   {
     name: "Ian Logan Will Quispe Ventura",
+    role: "Data Engineer",
     photo: "/images/speakers/ian_quispe.webp",
+    linkedin: "https://www.linkedin.com/in/ian-quispe-ventura-a0298a323/",
   },
   {
     name: "Luis Enrique Pinedo",
+    role: "CEO",
     photo: "/images/speakers/luis_enrique_pinedo.webp",
+    linkedin: "https://www.linkedin.com/in/enricoder/",
   },
 ];
 
