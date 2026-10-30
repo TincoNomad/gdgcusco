@@ -12,22 +12,25 @@ const dayOne = [
   { time: '9:00 – 9:15', title: 'Inauguración del evento', type: 'session' },
   { time: '9:15 – 9:45', title: 'WebMCP in action', speaker: 'Vanessa Aristizábal', type: 'talk', kind: 'Charla', place: 'Auditorio' },
   { time: '9:45 – 10:15', title: 'Agentic Engineering en Flutter', speaker: 'Luis Enrique Pinedo', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '10:15 – 10:45', title: 'TBD', speaker: 'Bruno Aybar', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '10:15 – 10:45', title: '¿Puede Hugging Face manipular a Antigravity?', speaker: 'David Alonso Quispe', type: 'talk', kind: 'Workshop', place: 'Aula' },
+  { time: '10:15 – 10:45', title: 'La receta mágica para destacar en un mundo lleno de IA', speaker: 'Bruno Aybar', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '10:15 – 10:45', title: '¿Puede Hugging Face manipular a Antigravity?', speaker: 'David Alonso Quispe', type: 'talk', kind: 'Workshop', place: 'Aula 1' },
+  { time: '10:15 – 10:45', title: 'Del prompt al harness: cómo dirigir agentes de IA para construir software con consistencia', speaker: 'Fahed Hermosa', type: 'talk', kind: 'Workshop', place: 'Aula 2' },
   { time: '11:15 – 11:30', title: 'Break', type: 'break' },
   { time: '11:30 – 12:00', title: 'Agentic Development in practice', speaker: 'Adrián Catalán', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '11:30 – 12:00', title: 'Más allá del código: diseño conversacional para agentes de IA', speaker: 'Luis Ángel Quispe Navarro', type: 'talk', kind: 'Workshop', place: 'Aula' },
+  { time: '11:30 – 12:00', title: 'Más allá del código: diseño conversacional para agentes de IA', speaker: 'Luis Ángel Quispe Navarro', type: 'talk', kind: 'Workshop', place: 'Aula 1' },
+  { time: '11:30 – 12:00', title: 'Protegiendo agentes de IA frente a amenazas con Model Armor', speaker: 'Yarleque', type: 'talk', kind: 'Workshop', place: 'Aula 2' },
   { time: '12:00 – 13:00', title: 'Software en un mundo de IA?', speaker: 'Andrés Chávez', type: 'talk', kind: 'Charla', place: 'Auditorio' },
   { time: '13:00 – 14:30', title: 'Almuerzo', type: 'break' },
   { time: '14:30 – 15:00', title: '¡Dale a tu cuerpo alegría ♫ … robot?! — AGY en el mundo físico', speaker: 'Hansy Schmitt', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '14:30 – 15:00', title: 'De Cusco a la Nube de Datos: Un salto hacia nuevas oportunidades', speaker: 'Ian Logan Will Quispe Ventura', type: 'talk', kind: 'Workshop', place: 'Aula' },
+  { time: '14:30 – 15:00', title: 'De Cusco a la Nube de Datos: Un salto hacia nuevas oportunidades', speaker: 'Ian Logan Will Quispe Ventura', type: 'talk', kind: 'Workshop', place: 'Aula 1' },
   { time: '15:00 – 15:30', title: 'Building and Deploying with Google ADK and Gemini', speaker: 'Carlos Alarcón', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '15:30 – 16:00', title: 'Como construir tu software factory con agente de IA', speaker: 'Jonathan Nolasco', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '16:00 – 16:15', title: 'Break', type: 'break' },
-  { time: '16:15 – 16:45', title: 'Data & Analytics en la era multi-cloud: SQL Server y Google BigQuery', speaker: 'Renzo Roca', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '16:45 – 17:15', title: 'La ilusión de velocidad.', speaker: 'Noe Branagan', type: 'talk', kind: 'Charla', place: 'Auditorio' },
-  { time: '17:15 – 17:45', title: 'Conversatorio', type: 'session' },
-  { time: '17:45 – 18:15', title: 'Cierre', type: 'session' },
+  { time: '15:30 – 16:00', title: 'Como construir tu software factory con agentes de IA', speaker: 'Jonathan Nolasco', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '16:00 – 16:30', title: 'Construya su primer agente de IA con Genkit', speaker: 'Luis Eduardo Pérez', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '16:30 – 16:45', title: 'Break', type: 'break' },
+  { time: '16:45 – 17:15', title: 'Data & Analytics en la era multi-cloud: SQL Server y Google BigQuery', speaker: 'Renzo Roca', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '17:15 – 17:45', title: 'La ilusión de velocidad.', speaker: 'Noe Branagan', type: 'talk', kind: 'Charla', place: 'Auditorio' },
+  { time: '17:45 – 18:30', title: 'Conversatorio', type: 'session' },
+  { time: '18:30 – 19:00', title: 'Cierre', type: 'session' },
 ];
 
 // Día 2 desactivado (este evento es de un solo día).
@@ -426,11 +429,21 @@ const rows = dayOne.reduce((acc, item, index) => {
 			gap: var(--space-4);
 		}
 
+		/* Ancho igual para todas las columnas de la fila: 2 o 3 sesiones
+		   paralelas. Con width fijo al 50% la tercera se desbordaba. */
 		.agenda__row--split > .agenda__item {
-			width: calc(50% - var(--space-6));
-			flex: 0 1 auto;
+			width: auto;
+			min-width: 0;
+			flex: 1 1 0;
 			margin-left: 0;
 			margin-right: 0;
+		}
+
+		/* Fila de 3 sesiones: a ese ancho la columna de horario deja
+		   el título en ~90px, así que el horario pasa arriba. */
+		.agenda__row--split:has(> .agenda__item:nth-child(3)) > .agenda__item {
+			grid-template-columns: 1fr;
+			gap: var(--space-2);
 		}
 
 		/* Un solo punto de timeline centrado en la fila: los dos
