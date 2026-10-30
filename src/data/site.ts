@@ -16,7 +16,7 @@ export const siteConfig: SiteConfig = {
     venue: "Paraninfo Universitario",
     city: "Cusco",
     country: "Perú",
-    fullAddress: "Paraninfo Universitario · Cusco",
+    fullAddress: "Auditorio Universidad Andina del Cusco · Cusco",
   },
   description:
     "Un punto de encuentro para personas que aprenden, comparten y construyen tecnología desde Cusco para el mundo.",
