@@ -83,7 +83,7 @@ const rows = dayOne.reduce((acc, item, index) => {
             row.length > 1 ? (
               <li class="agenda__row agenda__row--split">
                 {row.map((item) => (
-                  <div class={`agenda__item agenda__item--${item.type} agenda__item--color-${item.colorIndex}`}>
+                  <div class={`agenda__item agenda__item--${item.type} agenda__item--color-${item.colorIndex}${item.place?.startsWith('Aula') ? ' agenda__item--place-aula' : ''}`}>
                     {item.kind && <span class="agenda__kind">{item.kind}</span>}
                     <div class="agenda__meta">
                       <time>{item.time}</time>
@@ -421,29 +421,27 @@ const rows = dayOne.reduce((acc, item, index) => {
 		/* La fila ocupa 100% y cada box usa el mismo largo que un item
 		   normal: calc(50% - space-6). space-between mete el sobrante
 		   en el hueco central, que queda centrado sobre la línea. */
+		/* Fila con sesiones paralelas: dos columnas, una a cada lado de
+		   la línea central. Las tarjetas de Aula se apilan a la derecha. */
 		.agenda__row--split {
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: flex-start;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: start;
 			width: 100%;
 			gap: var(--space-4);
 		}
 
-		/* Ancho igual para todas las columnas de la fila: 2 o 3 sesiones
-		   paralelas. Con width fijo al 50% la tercera se desbordaba. */
+		/* `width: auto` porque la regla general de arriba fija
+		   calc(50% - space-6) para las filas de una sola tarjeta. */
 		.agenda__row--split > .agenda__item {
 			width: auto;
 			min-width: 0;
-			flex: 1 1 0;
 			margin-left: 0;
 			margin-right: 0;
 		}
 
-		/* Fila de 3 sesiones: a ese ancho la columna de horario deja
-		   el título en ~90px, así que el horario pasa arriba. */
-		.agenda__row--split:has(> .agenda__item:nth-child(3)) > .agenda__item {
-			grid-template-columns: 1fr;
-			gap: var(--space-2);
+		.agenda__row--split > .agenda__item--place-aula {
+			grid-column: 2;
 		}
 
 		/* Un solo punto de timeline centrado en la fila: los dos
