@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
   name: "DevFest 2026",
   date: "7 de Noviembre 2026",
   location: {
-    venue: "Paraninfo Universitario",
+    venue: "Auditorio Universidad Andina del Cusco",
     city: "Cusco",
     country: "Perú",
     fullAddress: "Auditorio Universidad Andina del Cusco · Cusco",
