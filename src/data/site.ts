@@ -61,6 +61,11 @@ export const sponsors: Sponsor[] = [
     href: "https://platzi.com",
     src: "/images/sponsors/platzi.webp",
   },
+  {
+    name: "Motiv Perú",
+    href: "https://motivperu.ngo/",
+    src: "/images/sponsors/motiv-peru-logo.webp",
+  },
 ];
 
 export const sponsorBenefits: string[] = [
