@@ -13,8 +13,8 @@ export const siteConfig: SiteConfig = {
   name: "DevFest 2026",
   date: "7 de Noviembre 2026",
   location: {
-    venue:
-      "Universidad Andina del Cusco, Campus Alameda Pachakuteq, Bancopata – Santiago",
+    venue: "Universidad Andina del Cusco",
+    campus: "Campus Alameda Pachakuteq, Bancopata – Santiago",
     city: "Cusco",
     country: "Perú",
     fullAddress:

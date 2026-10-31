@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { embedded = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const Tag = embedded ? 'div' : 'section';
 ---
 
@@ -33,11 +34,28 @@ const Tag = embedded ? 'div' : 'section';
 
 		<h2 id="event-info-title" class="event-info__date">{siteConfig.date}</h2>
 
-		<div class="event-info__location">
-			<span class="event-info__icon" aria-hidden="true">📍</span>
-			<span class="event-info__venue">{siteConfig.location.venue}</span>
-			<span class="event-info__city">· {siteConfig.location.city}</span>
-		</div>
+		<a
+			class="event-info__location"
+			href="https://maps.app.goo.gl/3i7GzpCKUZd6hRc17"
+			target="_blank"
+			rel="noopener noreferrer"
+			title="Ver ubicación en Google Maps"
+		>
+			<img
+				class="event-info__icon"
+				src={`${base}/images/maps_icon.webp`}
+				alt=""
+				aria-hidden="true"
+				width="24"
+				height="24"
+			/>
+			<span class="event-info__address">
+				<span class="event-info__venue">{siteConfig.location.venue}</span>
+				{siteConfig.location.campus && (
+					<span class="event-info__campus">{siteConfig.location.campus}</span>
+				)}
+			</span>
+		</a>
 	</div>
 </Tag>
 
@@ -66,15 +84,39 @@ const Tag = embedded ? 'div' : 'section';
 		gap: var(--space-3);
 		padding: var(--space-3) var(--space-6);
 		border: 1px solid var(--color-border);
-		border-radius: var(--radius-full);
+		border-radius: var(--radius-lg);
 		background: var(--color-surface);
 		box-shadow: var(--shadow-sm);
 		font-size: 1.125rem;
 		font-weight: 500;
 		color: var(--color-text);
+		text-decoration: none;
+		transition: transform var(--duration-base) var(--ease-default),
+			box-shadow var(--duration-base) var(--ease-default),
+			border-color var(--duration-base) var(--ease-default);
 	}
 
-	.event-info__city {
+	.event-info__location:hover,
+	.event-info__location:focus-visible {
+		transform: scale(1.03);
+		box-shadow: var(--shadow-md);
+		border-color: var(--color-primary);
+	}
+
+	.event-info__address {
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+	}
+
+	.event-info__icon {
+		width: 1.5rem;
+		height: 1.5rem;
+		flex-shrink: 0;
+		object-fit: contain;
+	}
+
+	.event-info__campus {
 		font-weight: 400;
 		color: var(--color-text-secondary);
 	}

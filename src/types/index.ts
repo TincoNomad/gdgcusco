@@ -3,6 +3,7 @@ export interface SiteConfig {
   date: string;
   location: {
     venue: string;
+    campus?: string;
     city: string;
     country: string;
     fullAddress: string;
