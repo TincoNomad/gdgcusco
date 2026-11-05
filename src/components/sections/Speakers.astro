@@ -19,12 +19,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="speakers__grid" role="list">
       {
         speakers.map((speaker) => {
-          const img = (
+          const initials = speaker.name
+            .split(' ')
+            .map((word) => word[0])
+            .slice(0, 2)
+            .join('');
+          const avatar = speaker.photo ? (
             <img
               src={`${base}${speaker.photo}`}
               alt={`Foto de ${speaker.name}`}
               loading="lazy"
             />
+          ) : (
+            <span class="speaker-card__initials" aria-hidden="true">{initials}</span>
           );
           return (
             <article class="speaker-card" role="listitem">
@@ -35,10 +42,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                   rel="noopener noreferrer"
                   aria-label={`LinkedIn de ${speaker.name}`}
                 >
-                  {img}
+                  {avatar}
                 </a>
               ) : (
-                img
+                avatar
               )}
               <h3>{speaker.name}</h3>
               {speaker.role && <p>{speaker.role}</p>}
@@ -118,6 +125,20 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 	.speaker-card:hover img {
 		transform: scale(1.03);
 		border-color: var(--color-primary);
+	}
+
+	/* Speaker sin foto: círculo con iniciales, mismas medidas que una foto. */
+	.speaker-card__initials {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		aspect-ratio: 1;
+		border-radius: var(--radius-full);
+		border: 2px solid var(--color-border);
+		background: var(--color-surface-alt);
+		font-size: 2rem;
+		font-weight: 600;
+		color: var(--color-text-secondary);
 	}
 
 	.speaker-card h3 {

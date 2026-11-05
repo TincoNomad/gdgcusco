@@ -65,7 +65,8 @@ export interface AgendaItem {
 export interface Speaker {
   name: string;
   role?: string;
-  photo: string;
+  /** Opcional: hay speakers sin foto todavía, se muestran con sus iniciales. */
+  photo?: string;
   country?: string;
   linkedin?: string;
 }
