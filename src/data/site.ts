@@ -184,11 +184,12 @@ export const speakers: Speaker[] = [
     photo: "/images/speakers/luis_enrique_pinedo.webp",
     linkedin: "https://www.linkedin.com/in/enricoder/",
   },
-  // Milton Yarleque: comentado hasta que tenga foto (si vuelve sin foto la tarjeta
-  // lo muestra con sus iniciales).
-  // {
-  //   name: "Milton Yarleque",
-  // },
+  {
+    name: "Milton Yarleque",
+    role: "Solutions Architect - DevOps",
+    photo: "/images/speakers/Yarlerque.webp",
+    linkedin: "https://www.linkedin.com/in/myarleque/",
+  },
   {
     name: "Fahed Hermosa",
     photo: "/images/speakers/fahed.webp",
